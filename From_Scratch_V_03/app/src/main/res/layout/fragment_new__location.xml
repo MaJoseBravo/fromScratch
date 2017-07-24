@@ -1,14 +1,157 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.anali.from_scratch_v_03.New_Location"
-    android:background="#9af2d3">
+    android:background="#ffffff">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="NEW LOCACTION" />
+        android:text="NEW LOCACTION" />-->
 
-</FrameLayout>
+
+    <TextView
+        android:id="@+id/titulo_locat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:text="Locations"
+        android:textSize="24dp"
+        android:textStyle="normal"
+        android:textColor="#D43B3F"/>
+
+    <ImageView
+        android:id="@+id/icono_locat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titulo_locat"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        app:srcCompat="@drawable/location" />
+
+    <TextView
+        android:id="@+id/fantasia_locat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/icono_locat"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="22dp"
+        android:text="Fantasy"
+        android:textSize="18dp"
+        android:textStyle="italic"
+        android:textColor="#333333"/>
+
+    <Button
+        android:id="@+id/kingdom_locat"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fantasia_locat"
+        android:layout_marginEnd="16dp"
+        android:textAllCaps="false"
+        android:layout_marginTop="16dp"
+        android:layout_toStartOf="@+id/icono_locat"
+        android:text="Kingdom"
+        android:background="@drawable/buttons_char_loc"
+        android:textColor="#333333"/>
+
+    <Button
+        android:id="@+id/city_locat"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/kingdom_locat"
+        android:layout_marginStart="18dp"
+        android:layout_toEndOf="@+id/icono_locat"
+        android:textAllCaps="false"
+        android:text="City"
+        android:background="@drawable/buttons_char_loc"
+        android:textColor="#333333"/>
+
+    <Button
+        android:id="@+id/town_locat"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAllCaps="false"
+        android:text="Town"
+        android:background="@drawable/buttons_char_loc"
+        android:textColor="#333333"
+        android:layout_below="@+id/kingdom_locat"
+        android:layout_alignStart="@+id/kingdom_locat" />
+
+    <Button
+        android:id="@+id/outdoor_place_locat"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/city_locat"
+        android:textAllCaps="false"
+        android:layout_alignTop="@+id/town_locat"
+        android:text="Outdoors"
+        android:background="@drawable/buttons_char_loc"
+        android:textColor="#333333"/>
+
+    <TextView
+        android:id="@+id/ScienceFiction_locat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/fantasia_locat"
+        android:layout_below="@+id/town_locat"
+        android:layout_marginTop="22dp"
+        android:text="Science Fiction"
+        android:textSize="18dp"
+        android:textStyle="italic"
+        android:textColor="#333333"/>
+
+    <Button
+        android:id="@+id/city_science"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/town_locat"
+        android:layout_below="@+id/ScienceFiction_locat"
+        android:layout_marginTop="16dp"
+        android:text="City"
+        android:textAllCaps="false"
+        android:background="@drawable/buttons_char_loc"
+        android:textColor="#333333"/>
+
+    <Button
+        android:id="@+id/galaxy_science"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/outdoor_place_locat"
+        android:layout_alignTop="@+id/city_science"
+        android:text="Galaxy"
+        android:textAllCaps="false"
+        android:background="@drawable/buttons_char_loc"
+        android:textColor="#333333"/>
+
+    <Button
+        android:id="@+id/planet_science"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/city_science"
+        android:layout_below="@+id/city_science"
+        android:layout_marginTop="16dp"
+        android:textAllCaps="false"
+        android:text="Planet"
+        android:background="@drawable/buttons_char_loc"
+        android:textColor="#333333"/>
+
+    <Button
+        android:id="@+id/outdoor_place_science"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/galaxy_science"
+        android:layout_alignTop="@+id/planet_science"
+        android:text="Outdoors"
+        android:textAllCaps="false"
+        android:background="@drawable/buttons_char_loc"
+        android:textColor="#333333"/>
+
+
+</RelativeLayout>

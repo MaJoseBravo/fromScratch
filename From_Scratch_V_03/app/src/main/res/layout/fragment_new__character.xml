@@ -1,14 +1,160 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.anali.from_scratch_v_03.New_Character"
-    android:background="#f6f9aa">
+    android:background="#ffffff"
+    android:id="@+id/NewCharacterFrag">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="NEW CHARACTER" />
+    <!-- <TextView
+         android:id="@+id/textView"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:text="NEW CHARACTER" />-->
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/titulo_char"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="Character"
+        android:textSize="24dp"
+        android:textStyle="normal"
+        android:textColor="#D43B3F"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/icono_char"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titulo_char"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        app:srcCompat="@drawable/character" />
+
+    <TextView
+        android:id="@+id/fantasia_char"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="22dp"
+        android:text="Fantasy"
+        android:textSize="18dp"
+        android:textStyle="italic"
+        android:textColor="#333333"
+        android:layout_below="@+id/icono_char"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/human_char"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Human"
+        android:background="@drawable/buttons_char_loc"
+        android:textColor="#333333"
+        android:layout_marginEnd="16dp"
+        android:textAllCaps="false"
+        android:layout_below="@+id/fantasia_char"
+        android:layout_toStartOf="@+id/icono_char" />
+
+    <Button
+        android:id="@+id/elf_char"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Elf"
+        android:background="@drawable/buttons_char_loc"
+        android:textColor="#333333"
+        android:layout_marginStart="18dp"
+        android:textAllCaps="false"
+        android:layout_alignBaseline="@+id/human_char"
+        android:layout_alignBottom="@+id/human_char"
+        android:layout_toEndOf="@+id/icono_char" />
+
+    <Button
+        android:id="@+id/vampire_char"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Vampire"
+        android:textAllCaps="false"
+        android:layout_below="@+id/human_char"
+        android:layout_alignStart="@+id/human_char"
+        android:background="@drawable/buttons_char_loc"
+        android:textColor="#333333"/>
+
+    <Button
+        android:id="@+id/fairy_char"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_alignStart="@+id/elf_char"
+        android:layout_alignTop="@+id/vampire_char"
+        android:text="Fairy"
+        android:background="@drawable/buttons_char_loc"
+        android:textColor="#333333"/>
+
+    <TextView
+        android:id="@+id/ScienceFiction_char"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:textAllCaps="false"
+        android:text="Science Fiction"
+        android:textSize="18dp"
+        android:textStyle="italic"
+        android:textColor="#333333"
+        android:layout_below="@+id/vampire_char"
+        android:layout_alignStart="@+id/fantasia_char" />
+
+    <Button
+        android:id="@+id/human_science"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAllCaps="false"
+        android:text="Human"
+        android:background="@drawable/buttons_char_loc"
+        android:textColor="#333333"
+        android:layout_below="@+id/ScienceFiction_char"
+        android:layout_alignStart="@+id/vampire_char" />
+
+    <Button
+        android:id="@+id/robot_science"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/fairy_char"
+        android:layout_alignTop="@+id/human_science"
+        android:text="Robot"
+        android:textAllCaps="false"
+        android:background="@drawable/buttons_char_loc"
+        android:textColor="#333333"/>
+
+    <Button
+        android:id="@+id/androide_science"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Android"
+        android:textAllCaps="false"
+        android:layout_below="@+id/human_science"
+        android:layout_alignStart="@+id/human_science"
+        android:background="@drawable/buttons_char_loc"
+        android:textColor="#333333"/>
+
+    <Button
+        android:id="@+id/cyborg_science"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/robot_science"
+        android:layout_alignTop="@+id/androide_science"
+        android:text="Cyborg"
+        android:textAllCaps="false"
+        android:background="@drawable/buttons_char_loc"
+        android:textColor="#333333"/>
+
+
+</RelativeLayout>

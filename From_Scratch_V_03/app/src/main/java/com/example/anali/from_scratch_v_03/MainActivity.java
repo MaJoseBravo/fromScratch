@@ -1,10 +1,13 @@
 package com.example.anali.from_scratch_v_03;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,9 +17,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, New_Story.OnFragmentInteractionListener, New_Character.OnFragmentInteractionListener, New_Location.OnFragmentInteractionListener, Notebook.OnFragmentInteractionListener, Settings.OnFragmentInteractionListener, Help.OnFragmentInteractionListener, About.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, New_Story.OnFragmentInteractionListener, New_Character.OnFragmentInteractionListener, New_Location.OnFragmentInteractionListener, Notebook.OnFragmentInteractionListener, Settings.OnFragmentInteractionListener, Help.OnFragmentInteractionListener, About.OnFragmentInteractionListener, Generator.OnFragmentInteractionListener {
+
+    Button human_char;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,10 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        /*human_char = (Button)findViewById(R.id.human_char);
+        human_char.setOnClickListener(this);*/
     }
 
     @Override
@@ -95,7 +105,7 @@ public class MainActivity extends AppCompatActivity
             FragmentSeleccionado = true;
 
         } else if (id == R.id.nav_new_location) {
-            fragment = new New_Location();
+            fragment = new Generator();
             FragmentSeleccionado = true;
 
         } else if (id == R.id.nav_notebook) {
@@ -128,5 +138,15 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        Prueba fragment = new Prueba();
+        transaction.add(R.id.Contenedor, fragment);
+        transaction.commit();
     }
 }

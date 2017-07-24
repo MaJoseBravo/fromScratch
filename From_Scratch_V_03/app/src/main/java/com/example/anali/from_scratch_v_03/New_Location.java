@@ -1,12 +1,14 @@
 package com.example.anali.from_scratch_v_03;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -64,7 +66,20 @@ public class New_Location extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new__location, container, false);
+        View v = inflater.inflate(R.layout.fragment_new__location, container, false);
+
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/KGAlwaysAGoodTime.ttf");
+
+        TextView titulo_setts = (TextView) v.findViewById(R.id.titulo_locat);
+        titulo_setts.setTypeface(font);
+
+        TextView fantasia_locat = (TextView) v.findViewById(R.id.fantasia_locat);
+        fantasia_locat.setTypeface(font);
+
+        TextView ScienceFiction_locat = (TextView) v.findViewById(R.id.ScienceFiction_locat);
+        ScienceFiction_locat.setTypeface(font);
+
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

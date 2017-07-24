@@ -4,19 +4,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_new_story"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/story"
             android:title="New Story" />
         <item
             android:id="@+id/nav_new_character"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/character"
             android:title="New Character" />
         <item
             android:id="@+id/nav_new_location"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/location"
             android:title="New Location" />
         <item
             android:id="@+id/nav_notebook"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/notebook"
             android:title="Notebook" />
     </group>
 
@@ -24,16 +24,19 @@
         <menu>
             <item
                 android:id="@+id/nav_settings"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Settings" />
+                android:icon="@drawable/settings"
+                android:title="Settings"
+                android:checkable="true"/>
             <item
                 android:id="@+id/nav_help"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Help" />
+                android:icon="@drawable/help"
+                android:title="Help"
+                android:checkable="true"/>
             <item
                 android:id="@+id/nav_about"
-                android:icon="@drawable/ic_menu_send"
-                android:title="About" />
+                android:icon="@drawable/about"
+                android:title="About"
+                android:checkable="true"/>
         </menu>
     </item>
 

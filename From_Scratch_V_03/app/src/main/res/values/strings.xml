@@ -6,6 +6,24 @@
 
     <string name="action_settings">Settings</string>
 
+    <string-array name="genre_spinner">
+        <item>Fantasy</item>
+        <item>Science Fiction</item>
+    </string-array>
+
+    <string-array name="race_spinner">
+        <item>Human</item>
+        <item>Elf</item>
+        <item>Vampire</item>
+        <item>Fairy</item>
+    </string-array>
+
+    <string-array name="gender_spinner">
+        <item>Male</item>
+        <item>Female</item>
+        <item>None</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

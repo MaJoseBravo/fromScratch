@@ -1,12 +1,17 @@
 package com.example.anali.from_scratch_v_03;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -17,7 +22,9 @@ import android.view.ViewGroup;
  * Use the {@link New_Character#newInstance} factory method to
  * create an instance of this fragment.
  */
+
 public class New_Character extends Fragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -60,11 +67,48 @@ public class New_Character extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new__character, container, false);
+        View v = inflater.inflate(R.layout.fragment_new__character, container, false);
+
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/KGAlwaysAGoodTime.ttf");
+
+        TextView titulo_char = (TextView) v.findViewById(R.id.titulo_char);
+        titulo_char.setTypeface(font);
+
+        TextView fantasia_char = (TextView) v.findViewById(R.id.fantasia_char);
+        fantasia_char.setTypeface(font);
+
+        TextView ScienceFiction_char = (TextView) v.findViewById(R.id.ScienceFiction_char);
+        ScienceFiction_char.setTypeface(font);
+
+        /*Button prueba = (Button) v.findViewById(R.id.human_char);
+        if (prueba.isPressed()){
+            Fragment nuevoFragmento = new Prueba();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.NewCharacterFrag, nuevoFragmento);
+            transaction.addToBackStack(null);
+            // Commit a la transacción
+            transaction.commit();
+        }*/
+
+        /*Button prueba = v.findViewById(R.id.human_char);
+        prueba.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Fragment nuevoFragmento = new Prueba();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.NewCharacterFrag, nuevoFragmento);
+                transaction.addToBackStack(null);
+                // Commit a la transacción
+                transaction.commit();
+            }
+        });*/
+
+
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

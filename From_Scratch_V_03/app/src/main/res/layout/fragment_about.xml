@@ -1,14 +1,49 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.anali.from_scratch_v_03.About"
-    android:background="#f9aaaa">
+    android:background="#ffffff">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="ABOUT US" />
+        android:text="ABOUT US" />-->
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/titulo_about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="About Us"
+        android:textSize="24dp"
+        android:textStyle="normal"
+        android:textColor="#D43B3F"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/icono_about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        app:srcCompat="@drawable/about"
+        android:layout_below="@+id/titulo_about"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/about_us"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="#333333"
+        android:textAlignment="center"
+        android:text="From Scratch is an app that allows you to generate names for characters and locations to build your stories. It can be used to create storyboards for: novels, videogames, movies, short films, etcetera. It’s for people who like to write as a hobby or as an occupation."
+        android:layout_below="@+id/icono_about"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
