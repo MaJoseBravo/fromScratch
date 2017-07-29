@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">From_Scratch_V_03</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -24,6 +26,20 @@
         <item>None</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="location_spinner">
+        <item>Kingdom</item>
+        <item>City</item>
+        <item>Town</item>
+        <item>Outdoors</item>
+    </string-array>
+
+    <string-array name="genres">
+        <item>Fantasy</item>
+        <item>Suspense</item>
+        <item>Drama</item>
+        <item>Science Fiction</item>
+        <item>Horror</item>
+        <item>Contemporary</item>
+    </string-array>
+
 </resources>

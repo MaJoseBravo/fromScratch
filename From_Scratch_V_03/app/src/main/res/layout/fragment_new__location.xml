@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.anali.from_scratch_v_03.New_Location"
+    tools:context="app.random.generator.from_scratch_v_03.New_Location"
     android:background="#ffffff">
 
     <!-- TODO: Update blank fragment layout -->
@@ -27,12 +27,12 @@
 
     <ImageView
         android:id="@+id/icono_locat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_below="@+id/titulo_locat"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"
-        app:srcCompat="@drawable/location" />
+        app:srcCompat="@drawable/location01" />
 
     <TextView
         android:id="@+id/fantasia_locat"

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.anali.from_scratch_v_03.About"
+    tools:context="app.random.generator.from_scratch_v_03.About"
     android:background="#ffffff">
 
     <!-- TODO: Update blank fragment layout -->
@@ -20,16 +20,16 @@
         android:text="About Us"
         android:textSize="24dp"
         android:textStyle="normal"
-        android:textColor="#D43B3F"
+        android:textColor="#C14040"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <ImageView
         android:id="@+id/icono_about"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_marginTop="22dp"
-        app:srcCompat="@drawable/about"
+        app:srcCompat="@drawable/about01"
         android:layout_below="@+id/titulo_about"
         android:layout_centerHorizontal="true" />
 
@@ -40,10 +40,71 @@
         android:layout_marginTop="22dp"
         android:layout_marginLeft="30dp"
         android:textColor="#333333"
+        android:textSize="14dp"
         android:textAlignment="center"
         android:text="From Scratch is an app that allows you to generate names for characters and locations to build your stories. It can be used to create storyboards for: novels, videogames, movies, short films, etcetera. It’s for people who like to write as a hobby or as an occupation."
         android:layout_below="@+id/icono_about"
         android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/iconoSitioWeb"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignStart="@+id/about_us"
+        android:layout_below="@+id/about_us"
+        android:layout_marginTop="48dp"
+        app:srcCompat="@drawable/website01" />
+
+    <TextView
+        android:id="@+id/urlSitioWeb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:textColor="#333333"
+        android:textSize="14dp"
+        android:text="Visit our website"
+        android:layout_alignBottom="@+id/iconoSitioWeb"
+        android:layout_toEndOf="@+id/iconoSitioWeb" />
+
+    <ImageView
+        android:id="@+id/icono_facebook"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignStart="@+id/iconoSitioWeb"
+        android:layout_below="@+id/iconoSitioWeb"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/facebook02" />
+
+    <TextView
+        android:id="@+id/urlFacebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:textSize="14dp"
+        android:layout_alignBottom="@+id/icono_facebook"
+        android:layout_alignStart="@+id/email_fromScratch"
+        android:text="Visit us on Facebook" />
+
+    <ImageView
+        android:id="@+id/iconoMail"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignStart="@+id/icono_facebook"
+        android:layout_below="@+id/icono_facebook"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/mail01" />
+
+    <TextView
+        android:id="@+id/email_fromScratch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:textSize="14dp"
+        android:layout_alignBottom="@+id/iconoMail"
+        android:layout_alignStart="@+id/urlSitioWeb"
+        android:text="fromscratchapp@hotmail.com" />
+
+
 
 
 </RelativeLayout>

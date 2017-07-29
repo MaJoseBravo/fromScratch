@@ -1,21 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/Contenedor"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.anali.from_scratch_v_03.MainActivity"
+    tools:context="app.random.generator.from_scratch_v_03.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <TextView
+
+    <ImageView android:id="@+id/photoImageView"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@color/colorAccent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="99dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView android:id="@+id/nameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/app_name"
+        android:textSize="24sp"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/photoImageView"
+        android:layout_centerHorizontal="true" />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView android:id="@+id/emailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="16sp"
+        android:layout_below="@+id/nameTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp" />
+
+    <Button
+        android:id="@+id/logOutGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emailTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:text="Log Out" />
+
+
+</RelativeLayout>

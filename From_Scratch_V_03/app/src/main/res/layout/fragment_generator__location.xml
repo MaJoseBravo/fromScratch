@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="app.random.generator.from_scratch_v_03.Generator_Location"
+    android:background="#ffffff">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!-- <TextView
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:text="@string/hello_blank_fragment" />-->
+
+
+    <Spinner
+        android:id="@+id/genre_location"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/genre_spinner"
+        android:textColor="#333333"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/type_location" />
+
+    <Spinner
+        android:id="@+id/type_location"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:entries="@array/location_spinner"
+        android:layout_marginEnd="66dp"
+        android:layout_alignBaseline="@+id/genre_location"
+        android:layout_alignBottom="@+id/genre_location"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/name_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textSize="40dp"
+        android:textColor="#333333"
+        android:hint="Name" />
+
+    <Button
+        android:id="@+id/generate_location"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/genre_location"
+        android:layout_marginBottom="56dp"
+        android:background="#00c2c3"
+        android:textColor="#ffffff"
+        android:text="Generate"
+        android:textSize="16dp"
+        />
+
+    <Button
+        android:id="@+id/save_location"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="#00c2c3"
+        android:textColor="#ffffff"
+        android:text="Save"
+        android:textSize="16dp"
+        android:layout_alignBaseline="@+id/generate_location"
+        android:layout_alignBottom="@+id/generate_location"
+        android:layout_alignEnd="@+id/type_location" />
+
+
+</RelativeLayout>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.anali.from_scratch_v_03.New_Character"
+    tools:context="app.random.generator.from_scratch_v_03.New_Character"
     android:background="#ffffff"
     android:id="@+id/NewCharacterFrag">
 
@@ -28,12 +28,12 @@
 
     <ImageView
         android:id="@+id/icono_char"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_below="@+id/titulo_char"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"
-        app:srcCompat="@drawable/character" />
+        app:srcCompat="@drawable/character01" />
 
     <TextView
         android:id="@+id/fantasia_char"
