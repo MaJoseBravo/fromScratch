@@ -1,7 +1,6 @@
-package app.random.generator.from_scratch_v_03;
+package app.random.generator.fromscratch_v01;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,7 +8,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.random.generator.from_scratch_v_03.R;
 
@@ -17,12 +18,12 @@ import com.random.generator.from_scratch_v_03.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link About.OnFragmentInteractionListener} interface
+ * {@link Generator_Character.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link About#newInstance} factory method to
+ * Use the {@link Generator_Character#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class About extends Fragment {
+public class Generator_Character extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -34,7 +35,7 @@ public class About extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public About() {
+    public Generator_Character() {
         // Required empty public constructor
     }
 
@@ -44,11 +45,11 @@ public class About extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment About.
+     * @return A new instance of fragment Generator_Character.
      */
     // TODO: Rename and change types and number of parameters
-    public static About newInstance(String param1, String param2) {
-        About fragment = new About();
+    public static Generator_Character newInstance(String param1, String param2) {
+        Generator_Character fragment = new Generator_Character();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,49 +70,39 @@ public class About extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_about, container, false);
+        View v = inflater.inflate(R.layout.fragment_generator_character, container, false);
 
+
+        /* CAMBIOS DE TIPOGRAFIA */
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/KGAlwaysAGoodTime.ttf");
 
-        TextView titulo_about = (TextView) v.findViewById(R.id.titulo_about);
-        titulo_about.setTypeface(font);
+       final TextView character_name = (TextView) v.findViewById(R.id.generator_name);
+        character_name.setTypeface(font);
 
-        TextView urlSitioWeb = (TextView) v.findViewById(R.id.urlSitioWeb);
 
-        urlSitioWeb.setOnClickListener(new View.OnClickListener() {
+        /*ARREGLO DE CHARACTERS*/
 
+        final Button generate_character = (Button) v.findViewById(R.id.generate);
+        final Button save_character = (Button) v.findViewById(R.id.save);
+
+        final String[] characters = {"Erin Whitewing", "Wyn Marblefire", "Alan Jenker",
+                "Trypta", "zTali", "Silver Cathorn", "Nathaniel Fallenwalker" };
+
+
+        generate_character.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Uri uri = Uri.parse("https://fromscratchapp.wixsite.com/fromscratch");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+            public void onClick(View view) {
+                int random = (int) (Math.random()*7);
+                character_name.setText(characters[random]);
             }
         });
 
-       /* TextView emailFromScratch = (TextView) v.findViewById(R.id.email_fromScratch);
-
-        emailFromScratch.setOnClickListener(new View.OnClickListener() {
-
+        save_character.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Uri uri = Uri.parse("fromscratchapp@hotmail.com");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            }
-        });*/
-
-        TextView urlFacebook = (TextView) v.findViewById(R.id.urlFacebook);
-
-        urlFacebook.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Uri uri = Uri.parse("https://www.facebook.com/fromScratchApp");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Character has been saved", Toast.LENGTH_SHORT).show();
             }
         });
-
 
         return v;
     }

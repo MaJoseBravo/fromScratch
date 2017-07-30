@@ -1,12 +1,10 @@
-package app.random.generator.from_scratch_v_03;
+package app.random.generator.fromscratch_v01;
 
 import android.content.Intent;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -19,9 +17,7 @@ import com.random.generator.from_scratch_v_03.R;
 
 public class Splash_Menu extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
-    /*int progress = 0;
-    ProgressBar horizontalProgressBar;
-    Handler h = new Handler();*/
+    /* VARIABLES PARA CONEXION CON GOOGLE*/
 
     private GoogleApiClient googleApiClient;
     private SignInButton signInButton;
@@ -32,6 +28,8 @@ public class Splash_Menu extends AppCompatActivity implements GoogleApiClient.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash__menu);
 
+
+        /* ELEMENTOS PARA CARGAR DATOS DE GOOGLE */
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -50,34 +48,9 @@ public class Splash_Menu extends AppCompatActivity implements GoogleApiClient.On
             }
         });
 
-        /*horizontalProgressBar = (ProgressBar)findViewById(R.id.progressBarHome);
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i=0; i<5; i++){
-                    progress+=50;
-                    h.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            horizontalProgressBar.setProgress(progress);
-                            if (progress == horizontalProgressBar.getMax()){
-                                //horizontalProgressBar.setVisibility(View.VISIBLE);
-                                //Intent intent = new Intent(getApplicationContext(), Menu_Drawer.class);
-                                //startActivity(intent);
-                                startActivity(new Intent(Splash_Menu.this, MainActivity.class));
-                            }
-                        }
-                    });
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e){
-
-                    }
-                }
-            }
-        }).start();*/
     }
+
+    /* METODOS DE GOOGLE PARA LOGIN */
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {

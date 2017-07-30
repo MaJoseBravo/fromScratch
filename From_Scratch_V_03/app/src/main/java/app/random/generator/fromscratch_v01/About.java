@@ -1,12 +1,15 @@
-package app.random.generator.from_scratch_v_03;
+package app.random.generator.fromscratch_v01;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.random.generator.from_scratch_v_03.R;
 
@@ -14,12 +17,12 @@ import com.random.generator.from_scratch_v_03.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Story_Overview.OnFragmentInteractionListener} interface
+ * {@link About.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Story_Overview#newInstance} factory method to
+ * Use the {@link About#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Story_Overview extends Fragment {
+public class About extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,7 +34,7 @@ public class Story_Overview extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Story_Overview() {
+    public About() {
         // Required empty public constructor
     }
 
@@ -41,11 +44,11 @@ public class Story_Overview extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Story_Overview.
+     * @return A new instance of fragment About.
      */
     // TODO: Rename and change types and number of parameters
-    public static Story_Overview newInstance(String param1, String param2) {
-        Story_Overview fragment = new Story_Overview();
+    public static About newInstance(String param1, String param2) {
+        About fragment = new About();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,7 +69,55 @@ public class Story_Overview extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_story__overview, container, false);
+        View v =  inflater.inflate(R.layout.fragment_about, container, false);
+
+
+        /* CAMBIOS DE TIPOGRAFIA */
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/KGAlwaysAGoodTime.ttf");
+
+
+        /* ACCIONES DE BOTONES */
+        TextView titulo_about = (TextView) v.findViewById(R.id.titulo_about);
+        titulo_about.setTypeface(font);
+
+        TextView urlSitioWeb = (TextView) v.findViewById(R.id.urlSitioWeb);
+
+        urlSitioWeb.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("https://fromscratchapp.wixsite.com/fromscratch");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+       /* TextView emailFromScratch = (TextView) v.findViewById(R.id.email_fromScratch);
+
+        emailFromScratch.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("fromscratchapp@hotmail.com");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });*/
+
+        TextView urlFacebook = (TextView) v.findViewById(R.id.urlFacebook);
+
+        urlFacebook.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("https://www.facebook.com/fromScratchApp");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

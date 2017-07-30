@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingRight="20dp"
-    tools:context="app.random.generator.from_scratch_v_03.New_Story"
+    tools:context="app.random.generator.fromscratch_v01.New_Story"
     android:background="#FFFFFF">
 
     <!-- TODO: Update blank fragment layout -->
@@ -19,8 +19,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp"
-        android:text=""
+        android:layout_marginTop="22dp"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        android:textColor="#333333"
         android:hint="Story Name"/>
 
     <TextView
@@ -29,6 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="23dp"
+        android:textSize="18sp"
+        android:textColor="#333333"
         android:text="Synopsis"
         android:layout_below="@+id/titulo_story"
         android:layout_alignParentStart="true" />
@@ -36,30 +40,37 @@
     <EditText
         android:id="@+id/desc_synopsis"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="50dp"
         android:layout_marginTop="19dp"
         android:ems="10"
+        android:background="#C24040"
+        android:textColor="#ffffff"
         android:inputType="textMultiLine"
         android:layout_below="@+id/titulo_synopsis"
         android:layout_alignStart="@+id/titulo_synopsis" />
 
     <Button
         android:id="@+id/upload_image"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Upload image"
+        android:background="#C24040"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"
         android:layout_below="@+id/desc_synopsis"
         android:layout_alignStart="@+id/desc_synopsis"
         android:layout_marginTop="14dp" />
 
     <Button
         android:id="@+id/next_01"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="29dp"
+        android:layout_marginBottom="25dp"
+        android:background="#00c2c3"
+        android:textColor="#ffffff"
         android:text="Next"
         android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/upload_image" />
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

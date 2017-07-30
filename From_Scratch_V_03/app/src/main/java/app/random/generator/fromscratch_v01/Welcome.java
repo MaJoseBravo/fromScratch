@@ -1,4 +1,4 @@
-package app.random.generator.from_scratch_v_03;
+package app.random.generator.fromscratch_v01;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -9,6 +9,8 @@ import android.widget.ProgressBar;
 import com.random.generator.from_scratch_v_03.R;
 
 public class Welcome extends AppCompatActivity {
+
+    /* SPLASH MENU Y BAR PROGRESS */
 
     int progress = 0;
     ProgressBar horizontalProgressBar;

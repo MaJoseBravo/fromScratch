@@ -7,6 +7,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="overview">Overview</string>
+    <string name="story_s_image">Story\'s image</string>
 
     <string-array name="genre_spinner">
         <item>Fantasy</item>
@@ -36,10 +38,30 @@
     <string-array name="genres">
         <item>Fantasy</item>
         <item>Suspense</item>
-        <item>Drama</item>
+        <item>Romance</item>
         <item>Science Fiction</item>
         <item>Horror</item>
         <item>Contemporary</item>
+    </string-array>
+
+    <string-array name="characters">
+        <item>Erin Whitewing</item>
+        <item>Wyn Marblefire</item>
+        <item>Alan Jenker</item>
+        <item>Trypta</item>
+        <item>zTali</item>
+        <item>Silver Cathorn</item>
+        <item>Nathaniel Fallenwalker</item>
+    </string-array>
+
+    <string-array name="locations">
+        <item>Chicago Nova</item>
+        <item>The New Earth Colony </item>
+        <item>The Crystalline City of Axan</item>
+        <item>Eastlake</item>
+        <item>Yersen VI</item>
+        <item>Empress of Kraakni</item>
+        <item>5052 Indi</item>
     </string-array>
 
 </resources>

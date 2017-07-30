@@ -51,6 +51,13 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:checkable="true"/>
+            <item
+                android:id="@+id/log_out"
+                android:icon="@drawable/logout02"
+                android:title="Log out"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:checkable="true"/>
         </menu>
     </item>
 

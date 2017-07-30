@@ -3,7 +3,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context="app.random.generator.from_scratch_v_03.New_Character"
+tools:context="app.random.generator.fromscratch_v01.New_Character"
 android:background="#ffffff">
 
 <!-- TODO: Update blank fragment layout -->
@@ -42,7 +42,7 @@ android:background="#ffffff">
         android:layout_marginStart="28dp"
         android:layout_marginTop="30dp"
         android:textColor="#333333"
-        android:text="Activar notificaciones" />
+        android:text="Activate notifications" />
 
     <Switch
         android:id="@+id/notificaciones_switch"

@@ -1,6 +1,7 @@
-package app.random.generator.from_scratch_v_03;
+package app.random.generator.fromscratch_v01;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,17 +12,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -40,12 +38,15 @@ public class MainActivity extends AppCompatActivity
         Settings.OnFragmentInteractionListener, Help.OnFragmentInteractionListener, About.OnFragmentInteractionListener,
         Generator_Character.OnFragmentInteractionListener, Generator_Location.OnFragmentInteractionListener,
         Character_List.OnFragmentInteractionListener, Location_List.OnFragmentInteractionListener, Genre_List.OnFragmentInteractionListener,
-        Story_Overview.OnFragmentInteractionListener, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
+        Story_Overview.OnFragmentInteractionListener, GoogleApiClient.OnConnectionFailedListener {
 
+
+    /* VARIABLES PARA CARGAR DATOS DE GOOGLE */
     private ImageView photoImageView;
     private TextView nameTextView;
     private TextView emailTextView;
 
+    /* VARIABLES PARA CONEXION CON GOOGLE*/
     private GoogleApiClient googleApiClient;
 
     @Override
@@ -56,14 +57,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+        /* ELEMENTOS DEL NAVEGATION DRAWER */
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -74,11 +68,14 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        /*getSupportFragmentManager().beginTransaction().replace(R.id.Contenedor, new New_Story()).addToBackStack(null).commit();*/
 
-        photoImageView = (ImageView) findViewById(R.id.photoImageView);
-        nameTextView = (TextView) findViewById(R.id.nameTextView);
-        emailTextView = (TextView) findViewById(R.id.emailTextView);
+        /* ELEMENTOS PARA CARGAR DATOS DE GOOGLE */
+
+        View header = navigationView.getHeaderView(0);
+
+        photoImageView = (ImageView) header.findViewById(R.id.photoImageView);
+        nameTextView = (TextView) header.findViewById(R.id.nameTextView);
+        emailTextView = (TextView) header.findViewById(R.id.emailTextView);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -89,8 +86,18 @@ public class MainActivity extends AppCompatActivity
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        Button btnLogOut = (Button) findViewById(R.id.logOutGoogle);
-        btnLogOut.setOnClickListener(this);
+
+        /* CAMBIOS DE TIPOGRAFIA */
+
+        Typeface font = Typeface.createFromAsset(getApplication().getAssets(), "fonts/KGAlwaysAGoodTime.ttf");
+
+        TextView titulo_nameGoogle = (TextView) findViewById(R.id.nameTextView);
+        titulo_nameGoogle.setTypeface(font);
+
+
+        /* FRAGMENT PRINCIPAL EN CONTENEDOR */
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.Contenedor, new Notebook()).commit();
     }
 
     @Override
@@ -111,6 +118,8 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /* METODOS DE GOOGLE PARA LOGIN */
+
     private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
 
@@ -119,7 +128,7 @@ public class MainActivity extends AppCompatActivity
             nameTextView.setText(account.getDisplayName());
             emailTextView.setText(account.getEmail());
 
-            Glide.with(this).load(account.getPhotoUrl()).into(photoImageView);
+            Glide.with(this).load(account.getPhotoUrl()).apply(RequestOptions.circleCropTransform()).into(photoImageView);
 
         }else{
             goLogInScreen();
@@ -132,6 +141,21 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    public void logOut() {
+        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
+            @Override
+            public void onResult(@NonNull Status status) {
+                if (status.isSuccess()) {
+                    goLogInScreen();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Couldn't sign out", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+
+    /* METODOS DEL NAVEGATION DRAWER */
 
     @Override
     public void onBackPressed() {
@@ -142,6 +166,7 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
+
 
    /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -202,6 +227,8 @@ public class MainActivity extends AppCompatActivity
             fragment = new About();
             FragmentSeleccionado = true;
 
+        } else if (id == R.id.log_out) {
+            logOut();
         }
 
         if (FragmentSeleccionado){
@@ -223,17 +250,4 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    @Override
-    public void onClick(View view) {
-        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
-            @Override
-            public void onResult(@NonNull Status status) {
-                if (status.isSuccess()) {
-                    goLogInScreen();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Couldn't sign out", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
 }

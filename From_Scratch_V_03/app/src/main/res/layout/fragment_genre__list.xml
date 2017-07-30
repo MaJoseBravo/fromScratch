@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context="app.random.generator.from_scratch_v_03.Genre_List">
+    tools:context="app.random.generator.fromscratch_v01.Genre_List">
 
     <!-- TODO: Update blank fragment layout -->
     <!-- <TextView
@@ -18,15 +18,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="22dp"
+        android:textSize="24dp"
+        android:textStyle="normal"
+        android:textColor="#D43B3F"
         android:text="Genres" />
 
     <Button
         android:id="@+id/save_story"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:background="#00c2c3"
+        android:textColor="#ffffff"
         android:layout_marginBottom="25dp"
         android:text="Save" />
 
@@ -36,6 +41,6 @@
         android:layout_height="350dp"
         android:layout_below="@+id/titulo_genres_list"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp" />
+        android:layout_marginTop="25dp" />
 
 </RelativeLayout>

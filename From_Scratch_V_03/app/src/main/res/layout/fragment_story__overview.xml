@@ -1,9 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    tools:context="app.random.generator.from_scratch_v_03.Story_Overview">
+    tools:context="app.random.generator.fromscratch_v01.Story_Overview">
 
     <!-- TODO: Update blank fragment layout -->
     <!--  <TextView
@@ -11,13 +12,124 @@
          android:layout_height="match_parent"
          android:text="@string/hello_blank_fragment" />-->
 
-     <TextView
-         android:id="@+id/titulo_overview"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignParentTop="true"
-         android:layout_centerHorizontal="true"
-         android:layout_marginTop="24dp"
-         android:text="Overview" />
+    <ImageView
+        android:id="@+id/image_overview"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="68dp"
+        app:srcCompat="@drawable/book"
+        android:contentDescription="@string/story_s_image"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
- </RelativeLayout>
+    <TextView
+        android:id="@+id/titulo_story_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The Happy Lemon"
+        android:textSize="18dp"
+        android:textColor="#C24040"
+        android:layout_marginTop="22dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/synopsis_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:text="This book cover designed with Canva is all happy feels and zest with its bright blue background, and illustrated cutaway of a lemon!"
+        android:layout_marginEnd="15dp"
+        android:layout_alignBottom="@+id/image_overview"
+        android:layout_toEndOf="@+id/locations_list_overview"
+        android:layout_alignTop="@+id/image_overview" />
+
+    <TextView
+        android:id="@+id/character_list_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:textSize="18dp"
+        android:textColor="#333333"
+        android:text="Characters"
+        android:layout_below="@+id/image_overview"
+        android:layout_alignStart="@+id/image_overview" />
+
+    <TextView
+        android:id="@+id/character_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/character_list_overview"
+        android:layout_below="@+id/character_list_overview"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="5dp"
+        android:text="Erin Whitewing, Alan Jenker, Nathaniel Fallenwalker"
+        android:textColor="#333333" />
+
+    <TextView
+        android:id="@+id/locations_list_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/character_list"
+        android:layout_below="@+id/character_list"
+        android:layout_marginTop="15dp"
+        android:textSize="18dp"
+        android:textColor="#333333"
+        android:text="Locations" />
+
+    <TextView
+        android:id="@+id/locations_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/locations_list_overview"
+        android:layout_below="@+id/locations_list_overview"
+        android:layout_marginTop="5dp"
+        android:text="The New Earth Colony, Eastlake, Empress of Kraakni"
+        android:textColor="#333333"/>
+
+    <TextView
+        android:id="@+id/genres_list_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/locations_list"
+        android:layout_below="@+id/locations_list"
+        android:layout_marginTop="15dp"
+        android:text="Genres"
+        android:textSize="18dp"
+        android:textColor="#333333"/>
+
+    <TextView
+        android:id="@+id/genres_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/genres_list_overview"
+        android:layout_below="@+id/genres_list_overview"
+        android:layout_marginTop="5dp"
+        android:text="Comteporary, Romance, Suspense"
+        android:textColor="#333333"/>
+
+    <Button
+        android:id="@+id/edit_story"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:layout_toEndOf="@+id/genres_list_overview"
+        android:background="#00c2c3"
+        android:textColor="#ffffff"
+        android:text="Edit" />
+
+    <Button
+        android:id="@+id/delete_story"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/edit_story"
+        android:layout_marginStart="40dp"
+        android:layout_toEndOf="@+id/edit_story"
+        android:background="#00c2c3"
+        android:textColor="#ffffff"
+        android:text="Delete" />
+
+
+</RelativeLayout>

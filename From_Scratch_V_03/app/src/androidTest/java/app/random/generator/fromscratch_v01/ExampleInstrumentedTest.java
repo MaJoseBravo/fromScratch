@@ -1,4 +1,4 @@
-package app.random.generator.from_scratch_v_03;
+package app.random.generator.fromscratch_v01;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

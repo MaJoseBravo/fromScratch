@@ -1,4 +1,4 @@
-package app.random.generator.from_scratch_v_03;
+package app.random.generator.fromscratch_v01;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -16,12 +16,12 @@ import com.random.generator.from_scratch_v_03.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Generator_Location.OnFragmentInteractionListener} interface
+ * {@link New_Location.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Generator_Location#newInstance} factory method to
+ * Use the {@link New_Location#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Generator_Location extends Fragment {
+public class New_Location extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -33,7 +33,7 @@ public class Generator_Location extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Generator_Location() {
+    public New_Location() {
         // Required empty public constructor
     }
 
@@ -43,11 +43,11 @@ public class Generator_Location extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Generator_Location.
+     * @return A new instance of fragment New_Location.
      */
     // TODO: Rename and change types and number of parameters
-    public static Generator_Location newInstance(String param1, String param2) {
-        Generator_Location fragment = new Generator_Location();
+    public static New_Location newInstance(String param1, String param2) {
+        New_Location fragment = new New_Location();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -68,12 +68,20 @@ public class Generator_Location extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_generator__location, container, false);
+        View v = inflater.inflate(R.layout.fragment_new__location, container, false);
 
+
+        /* CAMBIOS DE TIPOGRAFIA */
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/KGAlwaysAGoodTime.ttf");
 
-        TextView name_location = (TextView) v.findViewById(R.id.name_location);
-        name_location.setTypeface(font);
+        TextView titulo_setts = (TextView) v.findViewById(R.id.titulo_locat);
+        titulo_setts.setTypeface(font);
+
+        TextView fantasia_locat = (TextView) v.findViewById(R.id.fantasia_locat);
+        fantasia_locat.setTypeface(font);
+
+        TextView ScienceFiction_locat = (TextView) v.findViewById(R.id.ScienceFiction_locat);
+        ScienceFiction_locat.setTypeface(font);
 
         return v;
     }

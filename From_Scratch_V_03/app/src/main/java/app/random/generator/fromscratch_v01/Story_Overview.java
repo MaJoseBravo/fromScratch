@@ -1,6 +1,7 @@
-package app.random.generator.from_scratch_v_03;
+package app.random.generator.fromscratch_v01;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.random.generator.from_scratch_v_03.R;
 
@@ -16,12 +18,12 @@ import com.random.generator.from_scratch_v_03.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Location_List.OnFragmentInteractionListener} interface
+ * {@link Story_Overview.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Location_List#newInstance} factory method to
+ * Use the {@link Story_Overview#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Location_List extends Fragment {
+public class Story_Overview extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -33,7 +35,7 @@ public class Location_List extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Location_List() {
+    public Story_Overview() {
         // Required empty public constructor
     }
 
@@ -43,11 +45,11 @@ public class Location_List extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Location_List.
+     * @return A new instance of fragment Story_Overview.
      */
     // TODO: Rename and change types and number of parameters
-    public static Location_List newInstance(String param1, String param2) {
-        Location_List fragment = new Location_List();
+    public static Story_Overview newInstance(String param1, String param2) {
+        Story_Overview fragment = new Story_Overview();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -68,17 +70,47 @@ public class Location_List extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_location__list, container, false);
-        Button btnContinue = (Button) v.findViewById(R.id.next_03);
-        btnContinue.setOnClickListener(new View.OnClickListener(){
+        View v = inflater.inflate(R.layout.fragment_story__overview, container, false);
+
+
+        /* ACCIONES DE BOTONES */
+        Button btnEdit = (Button) v.findViewById(R.id.edit_story);
+        btnEdit.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-                Genre_List fragment = new Genre_List();
+                New_Story fragment = new New_Story();
                 FragmentManager manager = getFragmentManager();
                 manager.beginTransaction().replace(R.id.Contenedor, fragment, fragment.getTag()).commit();
             }
         });
+
+        Button btnDelete = (Button) v.findViewById(R.id.delete_story);
+        btnDelete.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Notebook fragment = new Notebook();
+                FragmentManager manager = getFragmentManager();
+                manager.beginTransaction().replace(R.id.Contenedor, fragment, fragment.getTag()).commit();
+            }
+        });
+
+
+        /* CAMBIOS DE TIPOGRAFIA */
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/KGAlwaysAGoodTime.ttf");
+
+        TextView titulo_overview = (TextView) v.findViewById(R.id.titulo_story_overview);
+        titulo_overview.setTypeface(font);
+
+        TextView character_list_overview = (TextView) v.findViewById(R.id.character_list_overview);
+        character_list_overview.setTypeface(font);
+
+        TextView locations_list_overview = (TextView) v.findViewById(R.id.locations_list_overview);
+        locations_list_overview.setTypeface(font);
+
+        TextView genres_list_overview = (TextView) v.findViewById(R.id.genres_list_overview);
+        genres_list_overview.setTypeface(font);
 
         return v;
     }

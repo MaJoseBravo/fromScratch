@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#C24040"
-    tools:context="app.random.generator.from_scratch_v_03.Welcome">
+    tools:context="app.random.generator.fromscratch_v01.Welcome">
 
     <ImageView
         android:id="@+id/imageView"

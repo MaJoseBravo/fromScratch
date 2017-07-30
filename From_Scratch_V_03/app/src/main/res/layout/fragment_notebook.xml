@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.random.generator.from_scratch_v_03.Notebook"
+    tools:context="app.random.generator.fromscratch_v01.Notebook"
     android:background="#ffffff">
 
     <!-- TODO: Update blank fragment layout -->
@@ -36,8 +36,8 @@
 
     <ImageView
         android:id="@+id/book_cover"
-        android:layout_width="70dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="110dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="34dp"
         app:srcCompat="@drawable/book"

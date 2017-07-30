@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.random.generator.from_scratch_v_03.Generator_Location"
+    tools:context="app.random.generator.fromscratch_v01.Generator_Location"
     android:background="#ffffff">
 
     <!-- TODO: Update blank fragment layout -->
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:textSize="40dp"
+        android:textSize="30dp"
         android:textColor="#333333"
         android:hint="Name" />
 
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/genre_location"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="25dp"
         android:background="#00c2c3"
         android:textColor="#ffffff"
         android:text="Generate"
