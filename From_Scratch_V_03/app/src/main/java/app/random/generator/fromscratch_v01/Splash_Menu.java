@@ -13,7 +13,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.random.generator.from_scratch_v_03.R;
+
 
 public class Splash_Menu extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 

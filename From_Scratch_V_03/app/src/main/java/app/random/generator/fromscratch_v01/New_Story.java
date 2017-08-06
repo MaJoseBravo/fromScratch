@@ -13,8 +13,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.random.generator.from_scratch_v_03.R;
-
 
 /**
  * A simple {@link Fragment} subclass.

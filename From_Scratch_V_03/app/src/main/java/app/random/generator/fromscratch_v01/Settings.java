@@ -10,9 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.random.generator.from_scratch_v_03.R;
-
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the

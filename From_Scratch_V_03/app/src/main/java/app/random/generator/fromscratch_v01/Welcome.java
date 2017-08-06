@@ -6,8 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 
-import com.random.generator.from_scratch_v_03.R;
-
 public class Welcome extends AppCompatActivity {
 
     /* SPLASH MENU Y BAR PROGRESS */
