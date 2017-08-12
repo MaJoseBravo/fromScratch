@@ -5,10 +5,29 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Arrays;
+
+import app.random.generator.fromscratch_v01.Adapters.Story_Adapter;
+import app.random.generator.fromscratch_v01.Modelo.Story;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +38,14 @@ import android.widget.TextView;
  * create an instance of this fragment.
  */
 public class Notebook extends Fragment {
+
+    private static final String TAG = Notebook.class.getSimpleName();
+    private Story_Adapter adapter;
+    private RecyclerView lista;
+    private RecyclerView.LayoutManager lManager;
+    private Gson gson = new Gson();
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -68,8 +95,16 @@ public class Notebook extends Fragment {
         View v = inflater.inflate(R.layout.fragment_notebook, container, false);
 
 
-        /* ACCIONES DE BOTONES */
+        /* LISTA STORY */
+        lista = (RecyclerView) v.findViewById(R.id.reciclador);
+        lista.setHasFixedSize(true);
 
+        // Usar un administrador para LinearLayout
+        lManager = new LinearLayoutManager(getActivity());
+        lista.setLayoutManager(lManager);
+
+        // Cargar datos en el adaptador
+        cargarAdaptador();
 
 
         /* CAMBIOS DE TIPOGRAFIA */
@@ -80,6 +115,67 @@ public class Notebook extends Fragment {
 
         return v;
     }
+
+    public void cargarAdaptador() {
+        // Petición GET
+        VolleySingleton.
+                getInstance(getActivity()).
+                addToRequestQueue(
+                        new JsonObjectRequest(
+                                Request.Method.POST,
+                                Constantes.GET_STORIES,
+                                null,
+                                new Response.Listener<JSONObject>() {
+
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        // Procesar la respuesta Json
+                                        procesarRespuesta(response);
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Log.d(TAG, "Error Volley: " + error.getMessage());
+                                    }
+                                }
+
+                        )
+                );
+    }
+
+
+    private void procesarRespuesta(JSONObject response) {
+        try {
+            // Obtener atributo "estado"
+            String estado = response.getString("estado");
+
+            switch (estado) {
+                case "1": // EXITO
+                    // Obtener array "metas" Json
+                    JSONArray mensaje = response.getJSONArray("stories");
+                    // Parsear con Gson
+                    Story[] stories = gson.fromJson(mensaje.toString(), Story[].class);
+                    // Inicializar adaptador
+                    adapter = new Story_Adapter(Arrays.asList(stories), getActivity());
+                    // Setear adaptador a la lista
+                    lista.setAdapter(adapter);
+                    break;
+                case "2": // FALLIDO
+                    String mensaje2 = response.getString("mensaje");
+                    Toast.makeText(
+                            getActivity(),
+                            mensaje2,
+                            Toast.LENGTH_LONG).show();
+                    break;
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

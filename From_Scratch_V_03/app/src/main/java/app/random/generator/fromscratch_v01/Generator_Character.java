@@ -8,9 +8,24 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -30,6 +45,13 @@ public class Generator_Character extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    /*SPINNERS*/
+    private Spinner sp_gender;
+    private Spinner sp_genre;
+    private HashMap<String, String> genders;
+    private HashMap<String, String> genres;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -71,6 +93,50 @@ public class Generator_Character extends Fragment {
         View v = inflater.inflate(R.layout.fragment_generator_character, container, false);
 
 
+        //SPINNER GENDERS
+        sp_gender = (Spinner) v.findViewById(R.id.gender);
+
+        VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue
+                (new JsonObjectRequest(Request.Method.POST, Constantes.GET_GENDERS, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        obtenerdataGenders(response);
+                    }
+                },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                //Mensaje de Respuesta
+                                Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                ));
+
+
+        //SPINNER GENRES
+
+        sp_genre = (Spinner) v.findViewById(R.id.genre);
+
+       VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue
+                (new JsonObjectRequest(Request.Method.POST, Constantes.GET_SPINNER_GENRES, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        obtenerDataGenres(response);
+                    }
+                },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                //Mensaje de Respuesta
+                                Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                ));
+
+
+
         /* CAMBIOS DE TIPOGRAFIA */
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/KGAlwaysAGoodTime.ttf");
 
@@ -104,6 +170,82 @@ public class Generator_Character extends Fragment {
 
         return v;
     }
+
+
+    /* OBTENER GENEROS EN EL SPINNER */
+
+    public void obtenerdataGenders(JSONObject response) {
+        try {
+            //Obtener atributo estado
+            String estado = response.getString(Constantes.ESTADO);
+            switch (estado) {
+                case Constantes.SUCCESS:
+                    List<String> idList = new ArrayList<>();
+                    genders = new HashMap<>();
+                    JSONArray retorno = response.getJSONArray("genders");
+                    //Iniciar Adaptador
+                    for (int i = 0; i < retorno.length(); i++) {
+                        JSONObject jb1 = retorno.getJSONObject(i);
+                        genders.put(jb1.getString("description"), jb1.getString("id"));
+
+                    }
+                    idList.addAll(genders.keySet());
+                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
+                            android.R.layout.simple_spinner_item, idList);
+                    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    sp_gender.setAdapter(dataAdapter);
+                    /*sp_gender.setOnItemSelectedListener(this);*/
+                    break;
+                case Constantes.FAILED:
+                    String mensaje = response.getString(Constantes.MENSAJE);
+                    Toast.makeText(getActivity().getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
+                    /*guardar.setEnabled(false);*/
+                    break;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /* OBTENER GENRES EN EL SPINNER */
+
+    public void obtenerDataGenres(JSONObject response) {
+        try {
+            //Obtener atributo estado
+            String estado = response.getString(Constantes.ESTADO);
+            switch (estado) {
+                case Constantes.SUCCESS:
+                    List<String> idList = new ArrayList<>();
+                    genres = new HashMap<>();
+                    JSONArray retorno = response.getJSONArray("genres");
+                    //Iniciar Adaptador
+                    for (int i = 0; i < retorno.length(); i++) {
+                        JSONObject jb1 = retorno.getJSONObject(i);
+                        genres.put(jb1.getString("description"), jb1.getString("id"));
+
+                    }
+                    idList.addAll(genres.keySet());
+                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
+                            android.R.layout.simple_spinner_item, idList);
+                    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    sp_genre.setAdapter(dataAdapter);
+                    /*sp_gender.setOnItemSelectedListener(this);*/
+                    break;
+                case Constantes.FAILED:
+                    String mensaje = response.getString(Constantes.MENSAJE);
+                    Toast.makeText(getActivity().getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
+                    /*guardar.setEnabled(false);*/
+                    break;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
