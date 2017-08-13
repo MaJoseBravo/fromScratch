@@ -5,9 +5,11 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -26,6 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -36,7 +39,7 @@ import java.util.List;
  * Use the {@link Generator_Character#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Generator_Character extends Fragment {
+public class Generator_Character extends Fragment implements AdapterView.OnItemSelectedListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -49,8 +52,10 @@ public class Generator_Character extends Fragment {
     /*SPINNERS*/
     private Spinner sp_gender;
     private Spinner sp_genre;
+    private Spinner sp_race;
     private HashMap<String, String> genders;
     private HashMap<String, String> genres;
+     private HashMap<String, String> races;
 
 
     private OnFragmentInteractionListener mListener;
@@ -91,6 +96,25 @@ public class Generator_Character extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_generator_character, container, false);
+
+        sp_race = (Spinner) v.findViewById(R.id.race);
+
+        /*VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue
+                (new JsonObjectRequest(Request.Method.POST, Constantes.GET_RACES, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        obtenerDataRace(response);
+                    }
+                },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                //Mensaje de Respuesta
+                                Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                ));*/
 
 
         //SPINNER GENDERS
@@ -172,7 +196,7 @@ public class Generator_Character extends Fragment {
     }
 
 
-    /* OBTENER GENEROS EN EL SPINNER */
+    /* OBTENER GENDERS EN EL SPINNER */
 
     public void obtenerdataGenders(JSONObject response) {
         try {
@@ -208,6 +232,42 @@ public class Generator_Character extends Fragment {
     }
 
 
+    /* OBTENER RACES EN EL SPINNER */
+
+    public void obtenerDataRace(JSONObject response) {
+        try {
+            //Obtener atributo estado
+            String estado = response.getString(Constantes.ESTADO);
+            switch (estado) {
+                case Constantes.SUCCESS:
+                    List<String> idList = new ArrayList<>();
+                    races = new HashMap<>();
+                    JSONArray retorno = response.getJSONArray("race");
+                    //Iniciar Adaptador
+                    for (int i = 0; i < retorno.length(); i++) {
+                        JSONObject jb1 = retorno.getJSONObject(i);
+                        races.put(jb1.getString("description"), jb1.getString("id"));
+
+                    }
+                    idList.addAll(races.keySet());
+                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
+                            android.R.layout.simple_spinner_item, idList);
+                    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    sp_race.setAdapter(dataAdapter);
+                    /*sp_race.setOnItemSelectedListener(this);*/
+                    break;
+                case Constantes.FAILED:
+                    String mensaje = response.getString(Constantes.MENSAJE);
+                    Toast.makeText(getActivity().getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
+                    /*guardar.setEnabled(false);*/
+                    break;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     /* OBTENER GENRES EN EL SPINNER */
 
     public void obtenerDataGenres(JSONObject response) {
@@ -230,7 +290,7 @@ public class Generator_Character extends Fragment {
                             android.R.layout.simple_spinner_item, idList);
                     dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     sp_genre.setAdapter(dataAdapter);
-                    /*sp_gender.setOnItemSelectedListener(this);*/
+                    sp_genre.setOnItemSelectedListener(this);
                     break;
                 case Constantes.FAILED:
                     String mensaje = response.getString(Constantes.MENSAJE);
@@ -244,7 +304,57 @@ public class Generator_Character extends Fragment {
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String genre = (String) ((TextView) view).getText();
+        String genre_id = genres.get(genre);
 
+        // Actualizar datos en el servidor
+
+        HashMap<String, String> data = new HashMap<>();
+
+        data.put("genre_id", genre_id);
+
+        JSONObject jobject = new JSONObject(data);
+
+        VolleySingleton.getInstance(getActivity()).addToRequestQueue(
+                new JsonObjectRequest(
+                        Request.Method.POST,
+                        Constantes.GET_RACE,
+                        jobject,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                obtenerDataRace(response);
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                ) {
+                    @Override
+                    public Map<String, String> getHeaders() {
+                        Map<String, String> headers = new HashMap<String, String>();
+                        headers.put("Content-Type", "application/json; charset=utf-8");
+                        headers.put("Accept", "application/json");
+                        return headers;
+                    }
+
+                    @Override
+                    public String getBodyContentType() {
+                        return "application/json; charset=utf-8" + getParamsEncoding();
+                    }
+                }
+        );
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 
 
     // TODO: Rename method, update argument and hook method into UI event

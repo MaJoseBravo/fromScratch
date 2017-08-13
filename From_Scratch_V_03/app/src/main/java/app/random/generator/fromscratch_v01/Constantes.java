@@ -42,6 +42,7 @@ public class Constantes {
     //CONSULTAR DATA
 
     public static final String GET_STORIES = URL + "/Story/get_stories.php";
+    public static final String GET_RACES = URL + "/Race/get_races.php";
 
     public static final String GET_CHARACTER = URL + "/Character/get_character_by_race_gender.php";
     public static final String GET_CHARACTER_STORY = URL + "/Character_story/get_character_by_story.php";
