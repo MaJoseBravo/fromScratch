@@ -55,7 +55,8 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
     private Spinner sp_race;
     private HashMap<String, String> genders;
     private HashMap<String, String> genres;
-     private HashMap<String, String> races;
+    private HashMap<String, String> races;
+
 
 
     private OnFragmentInteractionListener mListener;
@@ -99,8 +100,15 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
 
         sp_race = (Spinner) v.findViewById(R.id.race);
 
-        /*VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue
-                (new JsonObjectRequest(Request.Method.POST, Constantes.GET_RACES, null, new Response.Listener<JSONObject>() {
+
+        /*HashMap<String, String> data = new HashMap<>();
+
+        data.put("genre_id", "2");
+
+        JSONObject jobject = new JSONObject(data);
+
+        VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue
+                (new JsonObjectRequest(Request.Method.POST, Constantes.GET_RACE, jobject, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
@@ -218,7 +226,6 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
                             android.R.layout.simple_spinner_item, idList);
                     dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     sp_gender.setAdapter(dataAdapter);
-                    /*sp_gender.setOnItemSelectedListener(this);*/
                     break;
                 case Constantes.FAILED:
                     String mensaje = response.getString(Constantes.MENSAJE);
@@ -254,7 +261,6 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
                             android.R.layout.simple_spinner_item, idList);
                     dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     sp_race.setAdapter(dataAdapter);
-                    /*sp_race.setOnItemSelectedListener(this);*/
                     break;
                 case Constantes.FAILED:
                     String mensaje = response.getString(Constantes.MENSAJE);
@@ -310,18 +316,18 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
         String genre_id = genres.get(genre);
 
         // Actualizar datos en el servidor
-
         HashMap<String, String> data = new HashMap<>();
+        data.put("genre_id",  String.valueOf(genre_id));
 
-        data.put("genre_id", genre_id);
+        JSONObject jsonObject = new JSONObject (data);
 
-        JSONObject jobject = new JSONObject(data);
+        System.out.print(jsonObject.toString());
 
-        VolleySingleton.getInstance(getActivity()).addToRequestQueue(
+        VolleySingleton.getInstance(getContext()).addToRequestQueue(
                 new JsonObjectRequest(
                         Request.Method.POST,
                         Constantes.GET_RACE,
-                        jobject,
+                        jsonObject,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
