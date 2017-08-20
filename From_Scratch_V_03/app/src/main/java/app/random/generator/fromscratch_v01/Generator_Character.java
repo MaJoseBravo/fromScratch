@@ -53,11 +53,17 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
     private Spinner sp_gender;
     private Spinner sp_genre;
     private Spinner sp_race;
+
     private HashMap<String, String> genders;
     private HashMap<String, String> genres;
     private HashMap<String, String> races;
 
+    private String gl_race_id, gl_gender_id;
 
+    private String data = "";
+
+    private Button btn_generate;
+    private TextView generate_name;
 
     private OnFragmentInteractionListener mListener;
 
@@ -99,30 +105,6 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
         View v = inflater.inflate(R.layout.fragment_generator_character, container, false);
 
         sp_race = (Spinner) v.findViewById(R.id.race);
-
-
-        /*HashMap<String, String> data = new HashMap<>();
-
-        data.put("genre_id", "2");
-
-        JSONObject jobject = new JSONObject(data);
-
-        VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue
-                (new JsonObjectRequest(Request.Method.POST, Constantes.GET_RACE, jobject, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        obtenerDataRace(response);
-                    }
-                },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                //Mensaje de Respuesta
-                                Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-                            }
-                        }
-                ));*/
 
 
         //SPINNER GENDERS
@@ -168,18 +150,75 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
                 ));
 
 
+        //BUTTON GENERATE
+
+        btn_generate = (Button) v.findViewById(R.id.generate);
+        generate_name = (TextView) v.findViewById(R.id.generator_name);
+
+        btn_generate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // Actualizar datos en el servidor
+                HashMap<String, String> data = new HashMap<>();
+                data.put("race_id",  String.valueOf(gl_race_id));
+                data.put("gender_id",  String.valueOf(gl_gender_id));
+
+                JSONObject jsonObject = new JSONObject (data);
+
+                System.out.print(jsonObject.toString());
+
+                VolleySingleton.getInstance(getContext()).addToRequestQueue(
+                        new JsonObjectRequest(
+                                Request.Method.POST,
+                                Constantes.GET_CHARACTER,
+                                jsonObject,
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        generarPersonaje(response);
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                        ) {
+                            @Override
+                            public Map<String, String> getHeaders() {
+                                Map<String, String> headers = new HashMap<String, String>();
+                                headers.put("Content-Type", "application/json; charset=utf-8");
+                                headers.put("Accept", "application/json");
+                                return headers;
+                            }
+
+                            @Override
+                            public String getBodyContentType() {
+                                return "application/json; charset=utf-8" + getParamsEncoding();
+                            }
+                        }
+                );
+            }
+        });
+
 
         /* CAMBIOS DE TIPOGRAFIA */
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/KGAlwaysAGoodTime.ttf");
-
-       final TextView character_name = (TextView) v.findViewById(R.id.generator_name);
-        character_name.setTypeface(font);
+        generate_name.setTypeface(font);
 
 
-        /*ARREGLO DE CHARACTERS*/
+        //BUTTON SAVE
+
+        final Button save_character = (Button) v.findViewById(R.id.save);
+
+
+
+        /*ARREGLO DE CHARACTERS
 
         final Button generate_character = (Button) v.findViewById(R.id.generate);
-        final Button save_character = (Button) v.findViewById(R.id.save);
+
 
         final String[] characters = {"Erin Whitewing", "Wyn Marblefire", "Alan Jenker",
                 "Trypta", "zTali", "Silver Cathorn", "Nathaniel Fallenwalker" };
@@ -191,7 +230,7 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
                 int random = (int) (Math.random()*7);
                 character_name.setText(characters[random]);
             }
-        });
+        });*/
 
         save_character.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,6 +240,40 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
         });
 
         return v;
+    }
+
+
+    /* GENERAR PERSONAJE AL HACER CLICK */
+
+    public void generarPersonaje(JSONObject response) {
+        try {
+            //Obtener atributo estado
+            String estado = response.getString(Constantes.ESTADO);
+            switch (estado) {
+                case Constantes.SUCCESS:
+
+                    JSONArray retorno = response.getJSONArray("character");
+
+                    for (int i = 0; i < retorno.length(); i++) {
+                        JSONObject jb1 = retorno.getJSONObject(i);
+
+                        String name = jb1.getString("name");
+                        String id = jb1.getString("id");
+
+                        data = name;
+                    }
+
+                    generate_name.setText(data);
+
+                    break;
+                case Constantes.FAILED:
+                    String mensaje = response.getString(Constantes.MENSAJE);
+                    Toast.makeText(getActivity().getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -226,6 +299,7 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
                             android.R.layout.simple_spinner_item, idList);
                     dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     sp_gender.setAdapter(dataAdapter);
+                    sp_gender.setOnItemSelectedListener(this);
                     break;
                 case Constantes.FAILED:
                     String mensaje = response.getString(Constantes.MENSAJE);
@@ -261,6 +335,7 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
                             android.R.layout.simple_spinner_item, idList);
                     dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     sp_race.setAdapter(dataAdapter);
+                    sp_race.setOnItemSelectedListener(this);
                     break;
                 case Constantes.FAILED:
                     String mensaje = response.getString(Constantes.MENSAJE);
@@ -310,51 +385,79 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
     }
 
 
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String genre = (String) ((TextView) view).getText();
-        String genre_id = genres.get(genre);
 
-        // Actualizar datos en el servidor
-        HashMap<String, String> data = new HashMap<>();
-        data.put("genre_id",  String.valueOf(genre_id));
 
-        JSONObject jsonObject = new JSONObject (data);
+        Spinner spinner = (Spinner) parent;
+        if(spinner.getId() == R.id.genre)
+        {
+            String genre = (String) ((TextView) view).getText();
+            String genre_id = genres.get(genre);
 
-        System.out.print(jsonObject.toString());
+            /*Toast.makeText(getActivity().getApplicationContext(), "Genre " + genre + "Genre_id " + genre_id, Toast.LENGTH_SHORT).show();*/
 
-        VolleySingleton.getInstance(getContext()).addToRequestQueue(
-                new JsonObjectRequest(
-                        Request.Method.POST,
-                        Constantes.GET_RACE,
-                        jsonObject,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                obtenerDataRace(response);
+            // Actualizar datos en el servidor
+            HashMap<String, String> data = new HashMap<>();
+            data.put("genre_id",  String.valueOf(genre_id));
+
+            JSONObject jsonObject = new JSONObject (data);
+
+            System.out.print(jsonObject.toString());
+
+            VolleySingleton.getInstance(getContext()).addToRequestQueue(
+                    new JsonObjectRequest(
+                            Request.Method.POST,
+                            Constantes.GET_RACE,
+                            jsonObject,
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    obtenerDataRace(response);
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                                }
                             }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-                            }
+                    ) {
+                        @Override
+                        public Map<String, String> getHeaders() {
+                            Map<String, String> headers = new HashMap<String, String>();
+                            headers.put("Content-Type", "application/json; charset=utf-8");
+                            headers.put("Accept", "application/json");
+                            return headers;
                         }
-                ) {
-                    @Override
-                    public Map<String, String> getHeaders() {
-                        Map<String, String> headers = new HashMap<String, String>();
-                        headers.put("Content-Type", "application/json; charset=utf-8");
-                        headers.put("Accept", "application/json");
-                        return headers;
-                    }
 
-                    @Override
-                    public String getBodyContentType() {
-                        return "application/json; charset=utf-8" + getParamsEncoding();
+                        @Override
+                        public String getBodyContentType() {
+                            return "application/json; charset=utf-8" + getParamsEncoding();
+                        }
                     }
-                }
-        );
+            );
+
+        }
+        else if(spinner.getId() == R.id.race)
+        {
+            String race = (String) ((TextView) view).getText();
+            String race_id = races.get(race);
+            gl_race_id = race_id;
+            /*Toast.makeText(getActivity().getApplicationContext(), "Race " + race + "Race_id " + race_id, Toast.LENGTH_SHORT).show();*/
+
+        }
+        else if(spinner.getId() == R.id.gender)
+        {
+            String gender = (String) ((TextView) view).getText();
+            String gender_id = genders.get(gender);
+            gl_gender_id = gender_id;
+            //Toast.makeText(getActivity().getApplicationContext(), "Gender " + gender + "Gender_id " + gender_id, Toast.LENGTH_SHORT).show();
+
+        }
+
+
     }
 
     @Override
