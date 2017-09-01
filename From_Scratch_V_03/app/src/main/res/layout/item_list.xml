@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Tittle"
-        android:textColor="#333333"
+        android:textColor="#C24040"
         android:textStyle="bold"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="0dp"/>

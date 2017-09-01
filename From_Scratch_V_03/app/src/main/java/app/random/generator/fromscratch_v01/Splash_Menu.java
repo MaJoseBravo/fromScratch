@@ -31,6 +31,7 @@ public class Splash_Menu extends AppCompatActivity implements GoogleApiClient.On
 
         /* ELEMENTOS PARA CARGAR DATOS DE GOOGLE */
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
@@ -70,6 +71,7 @@ public class Splash_Menu extends AppCompatActivity implements GoogleApiClient.On
     private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()){
             goMainScreen();
+
         }else{
             Toast.makeText(this, "Couldn't sign in", Toast.LENGTH_LONG).show();
         }

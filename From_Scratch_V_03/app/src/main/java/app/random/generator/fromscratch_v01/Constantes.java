@@ -57,7 +57,7 @@ public class Constantes {
     public static final String GET_LOCATION_USER = URL + "/Location_user/get_location_by_user.php";
     public static final String GET_RACE = URL + "/Race/get_race_by_genre.php";
     public static final String GET_STORY = URL + "/Story/get_story_by_id.php";
-    public static final String GET_USER = URL + "/User/get_user_by_token.php";
+    public static final String GET_USER_ID = URL + "/User/get_user_by_token.php";
     public static final String GET_USER_STORY = URL + "/User_story/get_story_by_user.php";
 
 
@@ -69,7 +69,7 @@ public class Constantes {
     public static final String INSERT_LOCATION_STORY = URL + "/Location_story/insert_location_story.php";
     public static final String INSERT_LOCATION_USER = URL + "/Location_user/insert_location_user.php";
     public static final String INSERT_STORY = URL + "/Story/insert_story.php";
-    public static final String INSERT_USER = URL + "/Story/insert_user.php";
+    public static final String INSERT_USER = URL + "/User/insert_user.php";
     public static final String INSERT_USER_STORY = URL + "/User_story/insert_user_story.php";
 
 
