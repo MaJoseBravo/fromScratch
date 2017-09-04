@@ -1,7 +1,9 @@
 package app.random.generator.fromscratch_v01;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -44,6 +46,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -69,13 +72,28 @@ public class MainActivity extends AppCompatActivity
     /* VARIABLES PARA CONEXION CON GOOGLE*/
     private GoogleApiClient googleApiClient;
 
+    /* VARIABLES GENERALES */
+
     public String data = "";
 
     public String TAG;
 
+    public View parentLayout;
+
+    private String idToken;
+
+
+    /* SHARED PREFERENCES */
+
+    public static final String myPreferences = "myPreferences";
+    SharedPreferences sharedPreferences;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        parentLayout = findViewById(android.R.id.content);
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -155,10 +173,9 @@ public class MainActivity extends AppCompatActivity
 
             Glide.with(this).load(account.getPhotoUrl()).apply(RequestOptions.circleCropTransform()).into(photoImageView);
 
-            /*String idToken = account.getIdToken();*/
+            idToken = account.getId();
 
             guardarUsuarios(result);
-            obtenerUserId(result);
 
         }else{
             goLogInScreen();
@@ -211,14 +228,18 @@ public class MainActivity extends AppCompatActivity
                             @Override
                             public void onResponse(JSONObject response) {
                                 // Procesar la respuesta del servidor
-                                Toast.makeText(MainActivity.this, "Success sign in", Toast.LENGTH_LONG).show();
-                                //procesarRespuesta(response);
+                                //Toast.makeText(MainActivity.this, "Success sign in", Toast.LENGTH_LONG).show();
+                                procesarRespuesta(response);
                             }
                         },
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Log.d(TAG, "Error Volley: " + error.getMessage());
+                                HashMap <String, String> userId = new LinkedHashMap<>();
+                                userId.put("id_google", idToken);
+                                obtenerUserId(userId);
+
                             }
                         }
 
@@ -241,14 +262,14 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    public void obtenerUserId (GoogleSignInResult result){
+    public void obtenerUserId (HashMap<String, String> userId){
 
-        HashMap<String, String> map = new HashMap<>();// Mapeo previo
+        //HashMap<String, String> map = new HashMap<>();// Mapeo previo
 
-        map.put("id_google", result.getSignInAccount().getId());
+        //map.put("id_google", result.getSignInAccount().getId());
 
         // Crear nuevo objeto Json basado en el mapa
-        JSONObject jobject = new JSONObject(map);
+        JSONObject jobject = new JSONObject(userId);
 
         // Depurando objeto Json...
         Log.d(TAG, jobject.toString());
@@ -312,11 +333,19 @@ public class MainActivity extends AppCompatActivity
                         String name = jb1.getString("name");
                         String email = jb1.getString("email");
 
-                        data += "id: " + id + " " +
-                                "name: " + name + " " + "email: " + email;
+                        data = name + "\n" + email;
+
+                        /*Shared preferences*/
+
+                        sharedPreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("id", id);
+                        editor.commit();
                     }
 
-                    Toast.makeText(MainActivity.this, data, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(MainActivity.this, data, Toast.LENGTH_LONG).show();
+                    Snackbar.make(parentLayout, data, Snackbar.LENGTH_LONG)
+                            .show();
 
                     break;
                 case Constantes.FAILED:
@@ -329,7 +358,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    /*private void procesarRespuesta(JSONObject response) {
+    private void procesarRespuesta(JSONObject response) {
 
         try {
             // Obtener estado
@@ -342,10 +371,10 @@ public class MainActivity extends AppCompatActivity
                     // Mostrar mensaje
                     Toast.makeText(
                             MainActivity.this,
-                            mensaje,
+                            "Welcome to From Scratch.",
                             Toast.LENGTH_LONG).show();
                     // Enviar código de éxito
-                    MainActivity.this.setResult(Activity.RESULT_OK);
+                    //MainActivity.this.setResult(Activity.RESULT_OK);
                     // Terminar actividad
                     //MainActivity.this.finish();
                     break;
@@ -354,10 +383,10 @@ public class MainActivity extends AppCompatActivity
                     // Mostrar mensaje
                     Toast.makeText(
                             MainActivity.this,
-                            mensaje,
+                            "An error has occur. Please try again.",
                             Toast.LENGTH_LONG).show();
                     // Enviar código de falla
-                    MainActivity.this.setResult(Activity.RESULT_CANCELED);
+                    //MainActivity.this.setResult(Activity.RESULT_CANCELED);
                     // Terminar actividad
                     //MainActivity.this.finish();
                     break;
@@ -366,7 +395,7 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
-    }*/
+    }
 
 
     /* METODOS DEL NAVEGATION DRAWER */
@@ -429,8 +458,12 @@ public class MainActivity extends AppCompatActivity
             fragment = new Notebook();
             FragmentSeleccionado = true;
 
-        } else if (id == R.id.nav_settings) {
-            fragment = new Settings();
+        } else if (id == R.id.nav_my_characters) {
+            fragment = new Character_List();
+            FragmentSeleccionado = true;
+
+        } else if (id == R.id.nav_my_locations) {
+            fragment = new Location_List();
             FragmentSeleccionado = true;
 
         } else if (id == R.id.nav_help) {

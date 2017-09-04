@@ -73,7 +73,7 @@ public class New_Story extends Fragment {
 
 
         /* ACCIONES DE BOTONES */
-        Button btnContinue = (Button) v.findViewById(R.id.next_01);
+        Button btnContinue = (Button) v.findViewById(R.id.save);
         btnContinue.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -93,17 +93,6 @@ public class New_Story extends Fragment {
 
         TextView titulo_synopsis = (TextView) v.findViewById(R.id.titulo_synopsis);
         titulo_synopsis.setTypeface(font);
-
-
-        final Button uploadImage = (Button) v.findViewById(R.id.upload_image);
-
-        uploadImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(), "Image has been saved", Toast.LENGTH_SHORT).show();
-            }
-        });
-
 
         return v;
     }

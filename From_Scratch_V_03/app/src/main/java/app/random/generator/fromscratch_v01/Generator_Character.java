@@ -1,6 +1,7 @@
 package app.random.generator.fromscratch_v01;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -60,10 +62,14 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
 
     private String gl_race_id, gl_gender_id;
 
-    private String data = "";
+    private String data_name = "";
+    private String data_id = "";
 
     private Button btn_generate;
     private TextView generate_name;
+
+    SharedPreferences sharedPreferences;
+    String channel;
 
     private OnFragmentInteractionListener mListener;
 
@@ -103,6 +109,11 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_generator_character, container, false);
+
+        //Shared Preferences
+
+        sharedPreferences = this.getActivity().getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
+        channel = (sharedPreferences.getString("id", ""));
 
         sp_race = (Spinner) v.findViewById(R.id.race);
 
@@ -205,14 +216,66 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
 
 
         /* CAMBIOS DE TIPOGRAFIA */
-        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/KGAlwaysAGoodTime.ttf");
-        generate_name.setTypeface(font);
+       // Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/KGAlwaysAGoodTime.ttf");
+        //generate_name.setTypeface(font);
 
 
         //BUTTON SAVE
 
         final Button save_character = (Button) v.findViewById(R.id.save);
 
+        save_character.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // Actualizar datos en el servidor
+
+                HashMap <String, String> data = new LinkedHashMap<>();
+                data.put("character_id",  String.valueOf(data_id));
+                data.put("user_id", channel);
+
+                //data.put("user_id",  String.valueOf(gl_gender_id));
+
+                JSONObject jsonObject = new JSONObject (data);
+
+                System.out.print(jsonObject.toString());
+
+                VolleySingleton.getInstance(getContext()).addToRequestQueue(
+                        new JsonObjectRequest(
+                                Request.Method.POST,
+                                Constantes.INSERT_CHARACTER_USER,
+                                jsonObject,
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        //generarPersonaje(response);
+                                        Toast.makeText(getActivity(), "Character has been saved", Toast.LENGTH_SHORT).show();
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                        ) {
+                            @Override
+                            public Map<String, String> getHeaders() {
+                                Map<String, String> headers = new HashMap<String, String>();
+                                headers.put("Content-Type", "application/json; charset=utf-8");
+                                headers.put("Accept", "application/json");
+                                return headers;
+                            }
+
+                            @Override
+                            public String getBodyContentType() {
+                                return "application/json; charset=utf-8" + getParamsEncoding();
+                            }
+                        }
+                );
+
+            }
+        });
 
 
         /*ARREGLO DE CHARACTERS
@@ -232,12 +295,6 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
             }
         });*/
 
-        save_character.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(), "Character has been saved", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         return v;
     }
@@ -260,10 +317,12 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
                         String name = jb1.getString("name");
                         String id = jb1.getString("id");
 
-                        data = name;
+                        data_name = name;
+                        data_id = id;
+
                     }
 
-                    generate_name.setText(data);
+                    generate_name.setText(data_name);
 
                     break;
                 case Constantes.FAILED:

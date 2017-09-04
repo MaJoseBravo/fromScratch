@@ -76,19 +76,6 @@ public class Character_List extends Fragment {
         View v = inflater.inflate(R.layout.fragment_character__list, container, false);
 
 
-        /* ACCIONES DE BOTONES */
-        Button btnContinue = (Button) v.findViewById(R.id.next_02);
-        btnContinue.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                Location_List fragment = new Location_List();
-                FragmentManager manager = getFragmentManager();
-                manager.beginTransaction().replace(R.id.Contenedor, fragment, fragment.getTag()).commit();
-            }
-        });
-
-
         /* CAMBIOS DE TIPOGRAFIA */
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/KGAlwaysAGoodTime.ttf");
 

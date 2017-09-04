@@ -1,10 +1,12 @@
 package app.random.generator.fromscratch_v01;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -105,6 +107,12 @@ public class Notebook extends Fragment {
 
         // Cargar datos en el adaptador
         cargarAdaptador();
+
+        //Decoracion Recycler
+
+        //lista.addItemDecoration(new DividerItemDecoration(this,getResources().getDrawable(R.drawable.divider_background)));
+
+        lista.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
 
         /* CAMBIOS DE TIPOGRAFIA */

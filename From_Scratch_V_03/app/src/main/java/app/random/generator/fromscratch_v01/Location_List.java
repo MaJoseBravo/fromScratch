@@ -75,18 +75,6 @@ public class Location_List extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_location__list, container, false);
 
-        /* ACCIONES DE BOTONES */
-        Button btnContinue = (Button) v.findViewById(R.id.next_03);
-        btnContinue.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                Genre_List fragment = new Genre_List();
-                FragmentManager manager = getFragmentManager();
-                manager.beginTransaction().replace(R.id.Contenedor, fragment, fragment.getTag()).commit();
-            }
-        });
-
 
         /* CAMBIOS DE TIPOGRAFIA */
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/KGAlwaysAGoodTime.ttf");

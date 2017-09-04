@@ -29,9 +29,10 @@
         android:id="@+id/titulo_synopsis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="23dp"
         android:textSize="18sp"
+        android:textStyle="bold"
         android:textColor="#333333"
         android:text="Synopsis"
         android:layout_below="@+id/titulo_story"
@@ -40,7 +41,7 @@
     <EditText
         android:id="@+id/desc_synopsis"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="200dp"
         android:layout_marginTop="19dp"
         android:ems="10"
         android:background="#C24040"
@@ -49,26 +50,33 @@
         android:layout_below="@+id/titulo_synopsis"
         android:layout_alignStart="@+id/titulo_synopsis" />
 
-    <Button
-        android:id="@+id/upload_image"
-        android:layout_width="100dp"
+    <TextView
+        android:id="@+id/genre"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Upload image"
-        android:background="#C24040"
-        android:textColor="#ffffff"
-        android:textAllCaps="false"
+        android:layout_marginTop="30dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
         android:layout_below="@+id/desc_synopsis"
         android:layout_alignStart="@+id/desc_synopsis"
-        android:layout_marginTop="14dp" />
+        android:text="Genre" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/genre"
+        android:layout_toEndOf="@+id/titulo_synopsis" />
 
     <Button
-        android:id="@+id/next_01"
+        android:id="@+id/save"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
         android:background="#00c2c3"
         android:textColor="#ffffff"
-        android:text="Next"
+        android:text="Save"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 

@@ -24,17 +24,6 @@
         android:textColor="#D43B3F"
         android:text="Characters" />
 
-    <Button
-        android:id="@+id/next_02"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="#00c2c3"
-        android:textColor="#ffffff"
-        android:layout_marginBottom="25dp"
-        android:text="Next" />
-
     <ListView
         android:id="@+id/list_characters"
         android:layout_width="match_parent"

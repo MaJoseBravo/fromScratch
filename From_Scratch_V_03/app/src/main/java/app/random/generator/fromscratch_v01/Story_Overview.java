@@ -100,12 +100,6 @@ public class Story_Overview extends Fragment {
         TextView titulo_overview = (TextView) v.findViewById(R.id.titulo_story_overview);
         titulo_overview.setTypeface(font);
 
-        TextView character_list_overview = (TextView) v.findViewById(R.id.character_list_overview);
-        character_list_overview.setTypeface(font);
-
-        TextView locations_list_overview = (TextView) v.findViewById(R.id.locations_list_overview);
-        locations_list_overview.setTypeface(font);
-
         TextView genres_list_overview = (TextView) v.findViewById(R.id.genres_list_overview);
         genres_list_overview.setTypeface(font);
 
