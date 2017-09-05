@@ -350,7 +350,7 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
                     //Iniciar Adaptador
                     for (int i = 0; i < retorno.length(); i++) {
                         JSONObject jb1 = retorno.getJSONObject(i);
-                        genders.put(jb1.getString("description"), jb1.getString("id"));
+                        genders.put(jb1.getString("description_gender"), jb1.getString("id"));
 
                     }
                     idList.addAll(genders.keySet());

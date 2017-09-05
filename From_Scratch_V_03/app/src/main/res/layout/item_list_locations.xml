@@ -29,12 +29,12 @@
 
         <ImageView
             android:id="@+id/icono_01"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_below="@+id/notebook"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            app:srcCompat="@drawable/notebook01" />
+            app:srcCompat="@drawable/locationtype" />
 
         <TextView
             android:id="@+id/categoria_01"

@@ -16,7 +16,7 @@
             android:layout_height="32dp"/>
         <item
             android:id="@+id/nav_new_location"
-            android:icon="@drawable/location02"
+            android:icon="@drawable/icon"
             android:title="New Location"
             android:layout_width="32dp"
             android:layout_height="32dp"/>
@@ -28,7 +28,7 @@
             android:layout_height="32dp"/>
         <item
             android:id="@+id/nav_my_characters"
-            android:icon="@drawable/character02"
+            android:icon="@drawable/mycharacters"
             android:title="My Characters"
             android:layout_width="32dp"
             android:layout_height="32dp"/>

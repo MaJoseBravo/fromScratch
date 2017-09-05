@@ -43,7 +43,7 @@ public class Story_Adapter extends RecyclerView.Adapter<Story_Adapter.StoryViewH
             View v = LayoutInflater.from(viewGroup.getContext())
             .inflate(R.layout.item_list, viewGroup, false);
             return new StoryViewHolder(v, this);
-            }
+    }
 
     @Override
     public void onBindViewHolder(StoryViewHolder viewHolder, int i) {

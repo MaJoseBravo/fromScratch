@@ -46,7 +46,7 @@
             android:layout_below="@+id/notebook"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            app:srcCompat="@drawable/notebook01" />
+            app:srcCompat="@drawable/genre" />
 
         <TextView
             android:id="@+id/genre"
