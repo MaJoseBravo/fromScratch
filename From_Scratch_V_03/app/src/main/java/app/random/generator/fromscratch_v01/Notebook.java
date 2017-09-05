@@ -109,7 +109,6 @@ public class Notebook extends Fragment {
         cargarAdaptador();
 
         //Decoracion Recycler
-
         lista.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
 

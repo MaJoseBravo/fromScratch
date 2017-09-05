@@ -24,7 +24,6 @@ public class Story_Adapter extends RecyclerView.Adapter<Story_Adapter.StoryViewH
         implements ItemClickListener {
 
     private List<Story> items;
-
     private Context context;
 
     public Story_Adapter(List<Story> items, Context context) {

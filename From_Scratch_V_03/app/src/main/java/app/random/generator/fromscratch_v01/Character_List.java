@@ -133,8 +133,7 @@ public class Character_List extends Fragment {
         cargarAdaptador();
 
         //Decoracion Recycler
-
-        //listaPersonajes.addItemDecoration(new android.support.v7.widget.DividerItemDecoration(getActivity(), android.support.v7.widget.DividerItemDecoration.VERTICAL));
+        listaPersonajes.addItemDecoration(new android.support.v7.widget.DividerItemDecoration(getActivity(), android.support.v7.widget.DividerItemDecoration.VERTICAL));
 
         return v;
     }

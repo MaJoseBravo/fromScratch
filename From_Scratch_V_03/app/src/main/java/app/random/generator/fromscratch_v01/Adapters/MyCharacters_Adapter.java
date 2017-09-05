@@ -16,7 +16,8 @@ import app.random.generator.fromscratch_v01.R;
  * Created by anali on 05/09/17.
  */
 
-public class MyCharacters_Adapter extends RecyclerView.Adapter<MyCharacters_Adapter.MyCharactersViewHolder> implements ItemClickListener{
+public class MyCharacters_Adapter extends RecyclerView.Adapter<MyCharacters_Adapter.MyCharactersViewHolder>
+        implements ItemClickListener{
 
 
     private List<MyCharacters> items;
@@ -37,7 +38,7 @@ public class MyCharacters_Adapter extends RecyclerView.Adapter<MyCharacters_Adap
     @Override
     public MyCharactersViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_list, viewGroup, false);
+                .inflate(R.layout.item_list_characters, viewGroup, false);
         return new MyCharactersViewHolder(v, this);
     }
 
