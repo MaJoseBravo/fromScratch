@@ -1,6 +1,7 @@
 package app.random.generator.fromscratch_v01;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -25,7 +27,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,7 +39,7 @@ import java.util.List;
  * Use the {@link Generator_Location#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Generator_Location extends Fragment {
+public class Generator_Location extends Fragment implements AdapterView.OnItemSelectedListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -45,9 +49,23 @@ public class Generator_Location extends Fragment {
     private String mParam1;
     private String mParam2;
 
-
+    //SPINNERS
     private Spinner sp_genre_loc;
+    private Spinner sp_type_loc;
+
     private HashMap<String, String> genres_loc;
+    private HashMap<String, String> type_loc;
+
+    private String gl_type_loc_id;
+
+    private String data_name = "";
+    private String data_id = "";
+
+    private Button btn_generate_loc;
+    private TextView generate_loc;
+
+    SharedPreferences sharedPreferences;
+    String channel;
 
     private OnFragmentInteractionListener mListener;
 
@@ -88,6 +106,12 @@ public class Generator_Location extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_generator__location, container, false);
 
+        //Shared Preferences
+
+        sharedPreferences = this.getActivity().getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
+        channel = (sharedPreferences.getString("id", ""));
+
+        sp_type_loc = (Spinner) v.findViewById(R.id.type_location);
 
         //SPINNER GENRES
 
@@ -111,39 +135,150 @@ public class Generator_Location extends Fragment {
                 ));
 
 
+        //BUTTON GENERATE
 
-        /* CAMBIOS DE TIPOGRAFIA */
-        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/KGAlwaysAGoodTime.ttf");
+        btn_generate_loc = (Button) v.findViewById(R.id.generate_location);
+        generate_loc = (TextView) v.findViewById(R.id.name_location);
 
-        final TextView name_location = (TextView) v.findViewById(R.id.name_location);
-        name_location.setTypeface(font);
-
-        /*ARREGLO DE LOCATIONS*/
-
-        final Button generate_location = (Button) v.findViewById(R.id.generate_location);
-        final Button save_location = (Button) v.findViewById(R.id.save_location);
-
-        final String[] locations = {"Chicago Nova", "The New Earth Colony", "The Crystalline City of Axan",
-                "Eastlake", "Yersen VI", "Empress of Kraakni", "5052 Indi" };
-
-
-        generate_location.setOnClickListener(new View.OnClickListener() {
+        btn_generate_loc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int random = (int) (Math.random()*7);
-                name_location.setText(locations[random]);
+
+                // Actualizar datos en el servidor
+                HashMap<String, String> data = new HashMap<>();
+                data.put("location_type_id",  String.valueOf(gl_type_loc_id));
+
+                JSONObject jsonObject = new JSONObject (data);
+
+                System.out.print(jsonObject.toString());
+
+                VolleySingleton.getInstance(getContext()).addToRequestQueue(
+                        new JsonObjectRequest(
+                                Request.Method.POST,
+                                Constantes.GET_LOCATION_TYPE,
+                                jsonObject,
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        generarLocacion(response);
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                        ) {
+                            @Override
+                            public Map<String, String> getHeaders() {
+                                Map<String, String> headers = new HashMap<String, String>();
+                                headers.put("Content-Type", "application/json; charset=utf-8");
+                                headers.put("Accept", "application/json");
+                                return headers;
+                            }
+
+                            @Override
+                            public String getBodyContentType() {
+                                return "application/json; charset=utf-8" + getParamsEncoding();
+                            }
+                        }
+                );
             }
         });
 
-        save_location.setOnClickListener(new View.OnClickListener() {
+
+        //BUTTON SAVE
+
+        final Button save_loc = (Button) v.findViewById(R.id.save_location);
+
+        save_loc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Location has been saved", Toast.LENGTH_SHORT).show();
+
+                // Actualizar datos en el servidor
+
+                HashMap <String, String> data = new LinkedHashMap<>();
+                data.put("location_id",  String.valueOf(data_id));
+                data.put("user_id", channel);
+
+                JSONObject jsonObject = new JSONObject (data);
+
+                System.out.print(jsonObject.toString());
+
+                VolleySingleton.getInstance(getContext()).addToRequestQueue(
+                        new JsonObjectRequest(
+                                Request.Method.POST,
+                                Constantes.INSERT_LOCATION_USER,
+                                jsonObject,
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        Toast.makeText(getActivity(), "Location has been saved", Toast.LENGTH_SHORT).show();
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                        ) {
+                            @Override
+                            public Map<String, String> getHeaders() {
+                                Map<String, String> headers = new HashMap<String, String>();
+                                headers.put("Content-Type", "application/json; charset=utf-8");
+                                headers.put("Accept", "application/json");
+                                return headers;
+                            }
+
+                            @Override
+                            public String getBodyContentType() {
+                                return "application/json; charset=utf-8" + getParamsEncoding();
+                            }
+                        }
+                );
+
             }
         });
+
 
         return v;
     }
+
+    /* GENERAR LOCACION AL HACER CLICK */
+
+        public void generarLocacion(JSONObject response) {
+            try {
+                //Obtener atributo estado
+                String estado = response.getString(Constantes.ESTADO);
+                switch (estado) {
+                    case Constantes.SUCCESS:
+
+                        JSONArray retorno = response.getJSONArray("location");
+
+                        for (int i = 0; i < retorno.length(); i++) {
+                            JSONObject jb1 = retorno.getJSONObject(i);
+
+                            String name = jb1.getString("name");
+                            String id = jb1.getString("id");
+
+                            data_name = name;
+                            data_id = id;
+                        }
+
+                        generate_loc.setText(data_name);
+
+                        break;
+                    case Constantes.FAILED:
+                        String mensaje = response.getString(Constantes.MENSAJE);
+                        Toast.makeText(getActivity().getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
 
 
     /* OBTENER GENRES EN EL SPINNER */
@@ -168,7 +303,7 @@ public class Generator_Location extends Fragment {
                             android.R.layout.simple_spinner_item, idList);
                     dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     sp_genre_loc.setAdapter(dataAdapter);
-                    //sp_genre_loc.setOnItemSelectedListener(this);
+                    sp_genre_loc.setOnItemSelectedListener(this);
                     break;
                 case Constantes.FAILED:
                     String mensaje = response.getString(Constantes.MENSAJE);
@@ -180,6 +315,112 @@ public class Generator_Location extends Fragment {
             e.printStackTrace();
         }
     }
+
+    /* OBTENER TYPE_LOCATIONS EN EL SPINNER */
+
+    public void obtenerDataTypeLocation(JSONObject response) {
+        try {
+            //Obtener atributo estado
+            String estado = response.getString(Constantes.ESTADO);
+            switch (estado) {
+                case Constantes.SUCCESS:
+                    List<String> idList = new ArrayList<>();
+                    type_loc = new HashMap<>();
+                    JSONArray retorno = response.getJSONArray("location_type");
+                    //Iniciar Adaptador
+                    for (int i = 0; i < retorno.length(); i++) {
+                        JSONObject jb1 = retorno.getJSONObject(i);
+                        type_loc.put(jb1.getString("description"), jb1.getString("id"));
+
+                    }
+                    idList.addAll(type_loc.keySet());
+                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
+                            android.R.layout.simple_spinner_item, idList);
+                    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    sp_type_loc.setAdapter(dataAdapter);
+                    sp_type_loc.setOnItemSelectedListener(this);
+                    break;
+                case Constantes.FAILED:
+                    String mensaje = response.getString(Constantes.MENSAJE);
+                    Toast.makeText(getActivity().getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
+                    /*guardar.setEnabled(false);*/
+                    break;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
+        Spinner spinner = (Spinner) parent;
+        if(spinner.getId() == R.id.genre_location)
+        {
+            String genre = (String) ((TextView) view).getText();
+            String genre_id = genres_loc.get(genre);
+
+            /*Toast.makeText(getActivity().getApplicationContext(), "Genre " + genre + "Genre_id " + genre_id, Toast.LENGTH_SHORT).show();*/
+
+            // Actualizar datos en el servidor
+            HashMap<String, String> data = new HashMap<>();
+            data.put("genre_id",  String.valueOf(genre_id));
+
+            JSONObject jsonObject = new JSONObject (data);
+
+            System.out.print(jsonObject.toString());
+
+            VolleySingleton.getInstance(getContext()).addToRequestQueue(
+                    new JsonObjectRequest(
+                            Request.Method.POST,
+                            Constantes.GET_LOCATION_GENRE,
+                            jsonObject,
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    obtenerDataTypeLocation(response);
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            }
+                    ) {
+                        @Override
+                        public Map<String, String> getHeaders() {
+                            Map<String, String> headers = new HashMap<String, String>();
+                            headers.put("Content-Type", "application/json; charset=utf-8");
+                            headers.put("Accept", "application/json");
+                            return headers;
+                        }
+
+                        @Override
+                        public String getBodyContentType() {
+                            return "application/json; charset=utf-8" + getParamsEncoding();
+                        }
+                    }
+            );
+
+        }
+        else if(spinner.getId() == R.id.type_location)
+        {
+            String type_location = (String) ((TextView) view).getText();
+            String type_location_id = type_loc.get(type_location);
+            gl_type_loc_id = type_location_id;
+
+        }
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

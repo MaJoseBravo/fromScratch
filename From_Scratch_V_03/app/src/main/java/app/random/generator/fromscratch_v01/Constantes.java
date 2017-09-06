@@ -53,7 +53,7 @@ public class Constantes {
     public static final String GET_GENRE_STORY = URL + "/Genre_story/get_genre_by_story.php";
     public static final String GET_LOCATION_TYPE = URL + "/Location/get_location_by_type.php";
     public static final String GET_LOCATION_STORY = URL + "/Location_story/get_location_by_story.php";
-    public static final String GET_LOCATION_GENRE = URL + "/Location_type/get_location_by_genre.php";
+    public static final String GET_LOCATION_GENRE = URL + "/Location_type/get_location_type_by_genre.php";
     public static final String GET_LOCATION_USER = URL + "/Location_user/get_location_by_user.php";
     public static final String GET_RACE = URL + "/Race/get_race_by_genre.php";
     public static final String GET_STORY = URL + "/Story/get_story_by_id.php";
