@@ -35,11 +35,14 @@ public class MyLocations_Adapter extends RecyclerView.Adapter<MyLocations_Adapte
 
 
     @Override
+    public MyLocationsViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item_list_locations, viewGroup, false);
+        return new MyLocationsViewHolder(v, this);
     }
 
     @Override
+    public void onBindViewHolder(MyLocationsViewHolder viewHolder, int i) {
         viewHolder.name.setText(items.get(i).getName());
         viewHolder.description.setText(items.get(i).getDescription());
     }
@@ -58,6 +61,7 @@ public class MyLocations_Adapter extends RecyclerView.Adapter<MyLocations_Adapte
 
         public MyLocationsViewHolder(View v, ItemClickListener listener) {
             super(v);
+            name = (TextView) v.findViewById(R.id.name);
             description = (TextView) v.findViewById(R.id.categoria_01);
             this.listener = listener;
             v.setOnClickListener(this);
