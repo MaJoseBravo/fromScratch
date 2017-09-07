@@ -23,13 +23,23 @@
          android:textColor="#D43B3F"
          android:text="Locations" />
 
-    <ListView
+    <!--<ListView
         android:id="@+id/list_locations"
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:layout_below="@+id/titulo_locat_list"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="25dp" />-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/reciclador_locaciones"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="3dp"
+        android:scrollbars="vertical"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/titulo_locat_list"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
