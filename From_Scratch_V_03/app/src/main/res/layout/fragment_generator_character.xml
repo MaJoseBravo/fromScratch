@@ -57,9 +57,9 @@
         android:textColor="#ffffff"
         android:text="Generate"
         android:textSize="16dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginBottom="28dp"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/race" />
+        android:layout_toStartOf="@+id/generator_name" />
 
     <Button
         android:id="@+id/save"
@@ -69,10 +69,9 @@
         android:textColor="#ffffff"
         android:text="Save"
         android:textSize="16dp"
-        android:layout_marginBottom="22dp"
         android:layout_alignBaseline="@+id/generate"
         android:layout_alignBottom="@+id/generate"
-        android:layout_toEndOf="@+id/race" />
+        android:layout_toEndOf="@+id/generator_name" />
 
 
 </RelativeLayout>

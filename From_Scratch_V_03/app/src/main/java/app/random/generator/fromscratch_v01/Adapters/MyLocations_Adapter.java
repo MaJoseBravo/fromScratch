@@ -16,8 +16,7 @@ import app.random.generator.fromscratch_v01.R;
  * Created by Maria Jose Bravo on 06/09/2017.
  */
 
-public class MyLocations_Adapter extends RecyclerView.Adapter<MyLocations_Adapter.MyLocationsViewHolder>
-        implements ItemClickListener {
+public class MyLocations_Adapter extends RecyclerView.Adapter<MyLocations_Adapter.MyLocationsViewHolder> {
 
     private List<MyLocations> items;
     private Context context;
@@ -38,7 +37,7 @@ public class MyLocations_Adapter extends RecyclerView.Adapter<MyLocations_Adapte
     public MyLocationsViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item_list_locations, viewGroup, false);
-        return new MyLocationsViewHolder(v, this);
+        return new MyLocationsViewHolder(v);
     }
 
     @Override
@@ -47,29 +46,19 @@ public class MyLocations_Adapter extends RecyclerView.Adapter<MyLocations_Adapte
         viewHolder.description.setText(items.get(i).getDescription());
     }
 
-    @Override
-    public void onItemClick(View view, int position) {
 
-    }
-
-    public static class MyLocationsViewHolder extends RecyclerView.ViewHolder
-            implements View.OnClickListener {
+    public static class MyLocationsViewHolder extends RecyclerView.ViewHolder {
         // Campos respectivos de un item
         public TextView name;
         public TextView description;
-        public ItemClickListener listener;
+       // public ItemClickListener listener;
 
-        public MyLocationsViewHolder(View v, ItemClickListener listener) {
+        public MyLocationsViewHolder(View v) {
             super(v);
             name = (TextView) v.findViewById(R.id.name);
             description = (TextView) v.findViewById(R.id.categoria_01);
-            this.listener = listener;
-            v.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-            listener.onItemClick(v, getAdapterPosition());
+            //this.listener = listener;
+            //v.setOnClickListener(this);
         }
     }
 }

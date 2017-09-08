@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:textColor="#333333"
         android:layout_marginEnd="66dp"
-        android:layout_alignBaseline="@+id/genre_location"
         android:layout_alignBottom="@+id/genre_location"
         android:layout_alignParentEnd="true" />
 
@@ -46,14 +45,13 @@
         android:id="@+id/generate_location"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/genre_location"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="28dp"
         android:background="#00c2c3"
         android:textColor="#ffffff"
         android:text="Generate"
         android:textSize="16dp"
-        />
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/name_location" />
 
     <Button
         android:id="@+id/save_location"
@@ -65,7 +63,7 @@
         android:textSize="16dp"
         android:layout_alignBaseline="@+id/generate_location"
         android:layout_alignBottom="@+id/generate_location"
-        android:layout_alignEnd="@+id/type_location" />
+        android:layout_toEndOf="@+id/name_location" />
 
 
 </RelativeLayout>

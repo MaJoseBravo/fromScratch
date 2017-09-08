@@ -58,6 +58,8 @@ public class Location_List extends Fragment {
     SharedPreferences sharedPreferences;
     String channel;
 
+    private TextView noLocations;
+
     private ListView list_locations;
 
     private HashMap<String, String> locations_user;
@@ -110,6 +112,8 @@ public class Location_List extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_location__list, container, false);
+
+        noLocations = (TextView) v.findViewById(R.id.noLocationsTxt);
 
         //Shared Preferences
 
@@ -193,6 +197,7 @@ public class Location_List extends Fragment {
 
             switch (estado) {
                 case "1": // EXITO
+                    noLocations.setVisibility(View.INVISIBLE);
                     // Obtener array "metas" Json
                     JSONArray mensaje = response.getJSONArray("location_user");
                     // Parsear con Gson
@@ -204,10 +209,8 @@ public class Location_List extends Fragment {
                     break;
                 case "2": // FALLIDO
                     String mensaje2 = response.getString("mensaje");
-                    Toast.makeText(
-                            getActivity(),
-                            mensaje2,
-                            Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getActivity(), mensaje2, Toast.LENGTH_LONG).show();
+                    noLocations.setVisibility(View.VISIBLE);
                     break;
             }
 

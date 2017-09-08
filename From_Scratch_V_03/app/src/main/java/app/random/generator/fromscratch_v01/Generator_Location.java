@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -214,7 +215,9 @@ public class Generator_Location extends Fragment implements AdapterView.OnItemSe
                                 new Response.Listener<JSONObject>() {
                                     @Override
                                     public void onResponse(JSONObject response) {
-                                        Toast.makeText(getActivity(), "Location has been saved", Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(getActivity(), "Location has been saved", Toast.LENGTH_SHORT).show();
+                                        final String mensaje = "Location has been saved.";
+                                        new NotificationThread(mensaje).execute(5);
                                     }
                                 },
                                 new Response.ErrorListener() {
@@ -461,4 +464,44 @@ public class Generator_Location extends Fragment implements AdapterView.OnItemSe
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    public class NotificationThread extends AsyncTask<Integer, Integer, String> {
+
+        String mensaje;
+
+        public NotificationThread(String mensaje){
+            this.mensaje = mensaje;
+        }
+
+        @Override
+        protected String doInBackground(Integer... params) {
+            int n = params[0];
+            int myProgress = 0;
+            publishProgress(myProgress++);
+            for(int i=0;i<n;i++){
+                try {
+                    Thread.sleep(700);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
+
+        protected void onProgressUpdate(Integer... values) {
+            // Executes whenever publishProgress is called from doInBackground
+            // Used to update the progress indicator
+            super.onProgressUpdate(values);
+            //save_text.setText("Saving "+ values[0]);
+            Toast.makeText(getActivity(), "Saving location...", Toast.LENGTH_SHORT).show();
+        }
+
+        protected void onPostExecute(String result) {
+            Toast.makeText(getActivity(), mensaje, Toast.LENGTH_SHORT).show();
+            //save_text.setText(mensaje);
+            //createNotification("fromScratch",mensaje);
+        }
+
+    }
 }
+
