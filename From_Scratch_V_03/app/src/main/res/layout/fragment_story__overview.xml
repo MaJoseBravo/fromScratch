@@ -16,7 +16,6 @@
         android:id="@+id/titulo_story_overview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="The Happy Lemon"
         android:textSize="18dp"
         android:textColor="#C24040"
         android:textStyle="bold"
@@ -29,7 +28,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#333333"
-        android:text="This book cover designed with Canva is all happy feels and zest with its bright blue background, and illustrated cutaway of a lemon!"
         android:layout_marginTop="22dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -44,21 +42,19 @@
         android:textSize="16dp"
         android:textStyle="bold"
         android:textColor="#333333"
-        android:text="Genre"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_below="@+id/synopsis_overview"
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:id="@+id/character_list"
+        android:id="@+id/genre_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/genres_list_overview"
         android:layout_below="@+id/genres_list_overview"
         android:layout_marginEnd="15dp"
         android:layout_marginTop="5dp"
-        android:text="Romance"
         android:textColor="#333333" />
 
     <Button
@@ -75,7 +71,7 @@
 
     <Button
         android:id="@+id/delete_story"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/edit_story"
         android:layout_marginStart="40dp"

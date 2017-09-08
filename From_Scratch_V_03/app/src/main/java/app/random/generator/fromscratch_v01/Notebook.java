@@ -2,6 +2,7 @@ package app.random.generator.fromscratch_v01;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import app.random.generator.fromscratch_v01.Adapters.Story_Adapter;
 import app.random.generator.fromscratch_v01.Modelo.Story;
@@ -47,6 +50,10 @@ public class Notebook extends Fragment {
     private RecyclerView.LayoutManager lManager;
     private Gson gson = new Gson();
 
+    private TextView noStories;
+
+    SharedPreferences sharedPreferences;
+    String channel;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -96,6 +103,11 @@ public class Notebook extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_notebook, container, false);
 
+        noStories = (TextView) v.findViewById(R.id.noStoriesTxt);
+
+        //Shared Preferences
+        sharedPreferences = this.getActivity().getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
+        channel = (sharedPreferences.getString("id", ""));
 
         /* LISTA STORY */
         lista = (RecyclerView) v.findViewById(R.id.reciclador);
@@ -122,31 +134,48 @@ public class Notebook extends Fragment {
     }
 
     public void cargarAdaptador() {
-        // Petición GET
-        VolleySingleton.
-                getInstance(getActivity()).
-                addToRequestQueue(
-                        new JsonObjectRequest(
-                                Request.Method.POST,
-                                Constantes.GET_STORIES,
-                                null,
-                                new Response.Listener<JSONObject>() {
+        HashMap<String, String> map = new HashMap<>();// Mapeo previo
 
-                                    @Override
-                                    public void onResponse(JSONObject response) {
-                                        // Procesar la respuesta Json
-                                        procesarRespuesta(response);
-                                    }
-                                },
-                                new Response.ErrorListener() {
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        Log.d(TAG, "Error Volley: " + error.getMessage());
-                                    }
-                                }
+        //map.put("user_id", "1");
+        map.put("user_id", channel);
 
-                        )
-                );
+        JSONObject jobject = new JSONObject(map);
+
+        Log.d(TAG, jobject.toString());
+
+        VolleySingleton.getInstance(getContext()).addToRequestQueue(
+                new JsonObjectRequest(
+                        Request.Method.POST,
+                        Constantes.GET_STORIES_USER,
+                        jobject,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                // Procesar la respuesta del servidor
+                                procesarRespuesta(response);
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                ) {
+                    @Override
+                    public Map<String, String> getHeaders() {
+                        Map<String, String> headers = new HashMap<String, String>();
+                        headers.put("Content-Type", "application/json; charset=utf-8");
+                        headers.put("Accept", "application/json");
+                        return headers;
+                    }
+
+                    @Override
+                    public String getBodyContentType() {
+                        return "application/json; charset=utf-8" + getParamsEncoding();
+                    }
+                }
+        );
     }
 
 
@@ -157,8 +186,9 @@ public class Notebook extends Fragment {
 
             switch (estado) {
                 case "1": // EXITO
+                        noStories.setVisibility(View.INVISIBLE);
                     // Obtener array "metas" Json
-                    JSONArray mensaje = response.getJSONArray("stories");
+                    JSONArray mensaje = response.getJSONArray("story");
                     // Parsear con Gson
                     Story[] stories = gson.fromJson(mensaje.toString(), Story[].class);
                     // Inicializar adaptador
@@ -168,10 +198,8 @@ public class Notebook extends Fragment {
                     break;
                 case "2": // FALLIDO
                     String mensaje2 = response.getString("mensaje");
-                    Toast.makeText(
-                            getActivity(),
-                            mensaje2,
-                            Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getActivity(), mensaje2, Toast.LENGTH_LONG).show();
+                        noStories.setVisibility(View.VISIBLE);
                     break;
             }
 
@@ -205,6 +233,7 @@ public class Notebook extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
     /**
      * This interface must be implemented by activities that contain this

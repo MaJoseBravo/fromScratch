@@ -31,7 +31,7 @@ public class Constantes {
     public static final String ESTADO = "estado";
     public static final String SUCCESS = "1";
     public static final String FAILED = "2";
-    public static final String MENSAJE = "mensaje";
+    public static final String MENSAJE = "An error has occur";
 
 
      /* URLs del Web Service
@@ -57,6 +57,7 @@ public class Constantes {
     public static final String GET_LOCATION_USER = URL + "/Location_user/get_location_by_user.php";
     public static final String GET_RACE = URL + "/Race/get_race_by_genre.php";
     public static final String GET_STORY = URL + "/Story/get_story_by_id.php";
+    public static final String GET_STORIES_USER = URL + "/Story/get_stories_by_user.php";
     public static final String GET_USER_ID = URL + "/User/get_user_by_token.php";
     public static final String GET_USER_STORY = URL + "/User_story/get_story_by_user.php";
 

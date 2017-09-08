@@ -1,6 +1,7 @@
 package app.random.generator.fromscratch_v01;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -60,10 +61,10 @@ public class Character_List extends Fragment {
     private RecyclerView.LayoutManager lManager;
     private Gson gson = new Gson();
 
-    private ListView list_characters;
+    private TextView noCharacters;
 
-    private HashMap<String, String> characters_user;
-
+    SharedPreferences sharedPreferences;
+    String channel;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -113,12 +114,18 @@ public class Character_List extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_character__list, container, false);
 
+        noCharacters = (TextView) v.findViewById(R.id.noCharactersTxt);
 
         /* CAMBIOS DE TIPOGRAFIA */
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/KGAlwaysAGoodTime.ttf");
 
         TextView titulo_char_list = (TextView) v.findViewById(R.id.titulo_char_list);
         titulo_char_list.setTypeface(font);
+
+
+        //Shared Preferences
+        sharedPreferences = this.getActivity().getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
+        channel = (sharedPreferences.getString("id", ""));
 
 
          /* LISTA PERSONAJES */
@@ -142,8 +149,9 @@ public class Character_List extends Fragment {
     public void cargarAdaptador() {
         HashMap<String, String> map = new HashMap<>();// Mapeo previo
 
-        map.put("user_id", "1");
+        //map.put("user_id", "1");
 
+        map.put("user_id", channel);
         JSONObject jobject = new JSONObject(map);
 
         Log.d(TAG, jobject.toString());
@@ -157,7 +165,6 @@ public class Character_List extends Fragment {
                             @Override
                             public void onResponse(JSONObject response) {
                                 // Procesar la respuesta del servidor
-                                //Toast.makeText(MainActivity.this, "Success sign in", Toast.LENGTH_LONG).show();
                                 procesarRespuesta(response);
                             }
                         },
@@ -167,7 +174,6 @@ public class Character_List extends Fragment {
                                 Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         }
-
                 ) {
                     @Override
                     public Map<String, String> getHeaders() {
@@ -192,6 +198,7 @@ public class Character_List extends Fragment {
 
             switch (estado) {
                 case "1": // EXITO
+                    noCharacters.setVisibility(View.INVISIBLE);
                     // Obtener array "metas" Json
                     JSONArray mensaje = response.getJSONArray("character_user");
                     // Parsear con Gson
@@ -203,10 +210,8 @@ public class Character_List extends Fragment {
                     break;
                 case "2": // FALLIDO
                     String mensaje2 = response.getString("mensaje");
-                    Toast.makeText(
-                            getActivity(),
-                            mensaje2,
-                            Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getActivity(), mensaje2, Toast.LENGTH_LONG).show();
+                        noCharacters.setVisibility(View.VISIBLE);
                     break;
             }
 
@@ -215,38 +220,6 @@ public class Character_List extends Fragment {
         }
 
     }
-
-    /*public void obtenerDataCharactersUser(JSONObject response) {
-        try {
-            //Obtener atributo estado
-            String estado = response.getString(Constantes.ESTADO);
-            switch (estado) {
-                case Constantes.SUCCESS:
-                    List<String> idList = new ArrayList<>();
-                    characters_user = new HashMap<>();
-                    JSONArray retorno = response.getJSONArray("genders");
-                    //Iniciar Adaptador
-                    for (int i = 0; i < retorno.length(); i++) {
-                        JSONObject jb1 = retorno.getJSONObject(i);
-                        characters_user.put(jb1.getString("description_gender"), jb1.getString("id"));
-
-                    }
-                    idList.addAll(characters_user.keySet());
-                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
-                            android.R.layout.simple_list_item_1, android.R.id.text1, idList);
-                    //dataAdapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-                    list_characters.setAdapter(dataAdapter);
-                    break;
-                case Constantes.FAILED:
-                    String mensaje = response.getString(Constantes.MENSAJE);
-                    Toast.makeText(getActivity().getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
-                    break;
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }*/
-
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

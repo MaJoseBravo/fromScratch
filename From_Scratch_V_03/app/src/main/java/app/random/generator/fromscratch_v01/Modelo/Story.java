@@ -6,22 +6,26 @@ package app.random.generator.fromscratch_v01.Modelo;
 
 public class Story {
 
-    private Integer idStory;
+    private int id;
     private String name;
     private String synopsis;
+    private String description;
 
-    public Story(Integer idStory, String name, String synopsis) {
-        this.idStory = idStory;
+
+    public Story(int id, String name, String synopsis, String description) {
+        this.id = id;
         this.name = name;
         this.synopsis = synopsis;
+        this.description = description;
     }
 
-    public Integer getIdStory() {
-        return idStory;
+
+    public int getId() {
+        return id;
     }
 
-    public void setIdStory(Integer idStory) {
-        this.idStory = idStory;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -40,8 +44,17 @@ public class Story {
         this.synopsis = synopsis;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public boolean compararCon(Story story) {
         return this.name.compareTo(story.name) == 0 &&
-                this.synopsis.compareTo(story.synopsis) == 0;
+                this.synopsis.compareTo(story.synopsis) == 0 &&
+                this.description.compareTo(story.description) == 0;
     }
 }

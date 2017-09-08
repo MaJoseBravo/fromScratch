@@ -31,8 +31,22 @@
          android:layout_height="32dp"
          android:layout_below="@+id/notebook"
          android:layout_centerHorizontal="true"
-         android:layout_marginTop="22dp"
+         android:layout_marginTop="20dp"
          app:srcCompat="@drawable/notebook01" />
+
+    <TextView
+        android:id="@+id/noStoriesTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You don't have stories yet."
+        android:layout_marginTop="50dp"
+        android:visibility="invisible"
+        android:textSize="16dp"
+        android:textAlignment="center"
+        android:textStyle="normal"
+        android:textColor="#333333"
+        android:layout_below="@+id/icono_notebook"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/reciclador"
@@ -40,7 +54,7 @@
         android:layout_height="match_parent"
         android:padding="3dp"
         android:scrollbars="vertical"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/icono_notebook"
         android:layout_alignParentStart="true" />
 

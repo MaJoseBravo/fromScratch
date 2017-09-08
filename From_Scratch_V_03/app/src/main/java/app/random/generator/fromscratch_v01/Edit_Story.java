@@ -6,8 +6,6 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,12 +35,29 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link New_Story.OnFragmentInteractionListener} interface
+ * {@link Edit_Story.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link New_Story#newInstance} factory method to
+ * Use the {@link Edit_Story#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class New_Story extends Fragment implements AdapterView.OnItemSelectedListener{
+public class Edit_Story extends Fragment implements AdapterView.OnItemSelectedListener{
+
+
+    private Spinner sp_genre_upd;
+    private HashMap<String, String> genres;
+    private TextView titulo_upd;
+    private TextView synopsis_upd;
+
+    private Button btn_update;
+
+    SharedPreferences sharedPreferences;
+    String channel;
+    String idStory;
+
+    private String name;
+    private String synopsis;
+    private String gl_genre_id;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -52,22 +67,9 @@ public class New_Story extends Fragment implements AdapterView.OnItemSelectedLis
     private String mParam1;
     private String mParam2;
 
-
-    private Spinner sp_genre;
-    private HashMap<String, String> genres;
-    private String gl_genre_id;
-    private TextView titulo_story;
-    private TextView desc_synopsis;
-
-    private Button btn_save;
-
-    SharedPreferences sharedPreferences;
-    String channel;
-
-
     private OnFragmentInteractionListener mListener;
 
-    public New_Story() {
+    public Edit_Story() {
         // Required empty public constructor
     }
 
@@ -77,11 +79,11 @@ public class New_Story extends Fragment implements AdapterView.OnItemSelectedLis
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment New_Story.
+     * @return A new instance of fragment Edit_Story.
      */
     // TODO: Rename and change types and number of parameters
-    public static New_Story newInstance(String param1, String param2) {
-        New_Story fragment = new New_Story();
+    public static Edit_Story newInstance(String param1, String param2) {
+        Edit_Story fragment = new Edit_Story();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -92,39 +94,45 @@ public class New_Story extends Fragment implements AdapterView.OnItemSelectedLis
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+        /*if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+        }*/
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            idStory = bundle.getString("id", "");
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_new__story, container, false);
+        View v = inflater.inflate(R.layout.fragment_edit__story, container, false);
 
         sharedPreferences = this.getActivity().getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
         channel = (sharedPreferences.getString("id", ""));
+
+        sharedPreferences = this.getActivity().getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
+        idStory = (sharedPreferences.getString("idStory", ""));
 
 
         /* CAMBIOS DE TIPOGRAFIA */
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/KGAlwaysAGoodTime.ttf");
 
-        titulo_story = (TextView) v.findViewById(R.id.titulo_story);
-        titulo_story.setTypeface(font);
+        titulo_upd = (TextView) v.findViewById(R.id.titulo_story_upd);
+        titulo_upd.setTypeface(font);
 
-        final TextView titulo_synopsis = (TextView) v.findViewById(R.id.titulo_synopsis);
-        titulo_synopsis.setTypeface(font);
+        final TextView titulo_synopsis_upd = (TextView) v.findViewById(R.id.titulo_synopsis_upd);
+        titulo_synopsis_upd.setTypeface(font);
 
-        desc_synopsis = (TextView) v.findViewById(R.id.desc_synopsis);
+        synopsis_upd = (TextView) v.findViewById(R.id.desc_synopsis_upd);
 
-        final TextView genre = (TextView) v.findViewById(R.id.genre_title);
-        genre.setTypeface(font);
+        final TextView genre_upd = (TextView) v.findViewById(R.id.genre_upd);
+        genre_upd.setTypeface(font);
 
-        //SPINNER GENRES
-
-        sp_genre = (Spinner) v.findViewById(R.id.spinner_genres);
+        sp_genre_upd = (Spinner) v.findViewById(R.id.spinner_genres_upd);
 
         VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue
                 (new JsonObjectRequest(Request.Method.POST, Constantes.GET_GENRES, null, new Response.Listener<JSONObject>() {
@@ -144,9 +152,14 @@ public class New_Story extends Fragment implements AdapterView.OnItemSelectedLis
                 ));
 
 
-         /* ACCIONES DE BOTONES */
-        Button btn_save = (Button) v.findViewById(R.id.btn_save);
-        btn_save.setOnClickListener(new View.OnClickListener(){
+        /*CARGA DE DETALLE*/
+
+        //Toast.makeText(this.getContext(), idStory.toString(),Toast.LENGTH_SHORT).show();
+        cargarDetalleStory(idStory);
+
+
+        btn_update = (Button) v.findViewById(R.id.btn_update);
+        btn_update.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
@@ -154,10 +167,13 @@ public class New_Story extends Fragment implements AdapterView.OnItemSelectedLis
                 // Actualizar datos en el servidor
 
                 HashMap <String, String> data = new LinkedHashMap<>();
-                data.put("name", titulo_story.getText().toString());
-                data.put("synopsis", desc_synopsis.getText().toString());
+
+                data.put("id", idStory);
+                data.put("name", titulo_upd.getText().toString());
+                data.put("synopsis", synopsis_upd.getText().toString());
                 data.put("genre_id", String.valueOf(gl_genre_id));
                 data.put("user_id", channel);
+
 
                 JSONObject jsonObject = new JSONObject (data);
 
@@ -166,19 +182,20 @@ public class New_Story extends Fragment implements AdapterView.OnItemSelectedLis
                 VolleySingleton.getInstance(getContext()).addToRequestQueue(
                         new JsonObjectRequest(
                                 Request.Method.POST,
-                                Constantes.INSERT_STORY,
+                                Constantes.UPDATE_STORY,
                                 jsonObject,
                                 new Response.Listener<JSONObject>() {
                                     @Override
                                     public void onResponse(JSONObject response) {
-                                        Toast.makeText(getActivity(), "Story has been saved", Toast.LENGTH_SHORT).show();
-                                        insertarHistoria(response);
+                                        //generarPersonaje(response);
+                                        Toast.makeText(getActivity(), "Story has been update", Toast.LENGTH_SHORT).show();
                                     }
                                 },
                                 new Response.ErrorListener() {
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
-                                        Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                                        //Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity().getApplicationContext(), "An error has occur. Please try again.", Toast.LENGTH_LONG).show();
                                     }
                                 }
                         ) {
@@ -204,43 +221,79 @@ public class New_Story extends Fragment implements AdapterView.OnItemSelectedLis
     }
 
 
-    private void insertarHistoria(JSONObject response) {
+    private void cargarDetalleStory(String idStory) {
 
+        // Actualizar datos en el servidor
+
+        HashMap<String, String> data = new LinkedHashMap<>();
+        data.put("story_id", idStory);
+
+        JSONObject jsonObject = new JSONObject (data);
+
+        System.out.print(jsonObject.toString());
+
+        VolleySingleton.getInstance(getContext()).addToRequestQueue(
+                new JsonObjectRequest(
+                        Request.Method.POST,
+                        Constantes.GET_STORY,
+                        jsonObject,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                obtenerStorybyId(response);
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getActivity().getApplicationContext(), "An error has occur. Please try again.", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                ) {
+                    @Override
+                    public Map<String, String> getHeaders() {
+                        Map<String, String> headers = new HashMap<String, String>();
+                        headers.put("Content-Type", "application/json; charset=utf-8");
+                        headers.put("Accept", "application/json");
+                        return headers;
+                    }
+
+                    @Override
+                    public String getBodyContentType() {
+                        return "application/json; charset=utf-8" + getParamsEncoding();
+                    }
+                }
+        );
+
+    }
+
+
+    public void obtenerStorybyId(JSONObject response) {
         try {
-            // Obtener estado
-            String estado = response.getString("estado");
-            // Obtener mensaje
-            String mensaje = response.getString("mensaje");
-
+            //Obtener atributo estado
+            String estado = response.getString(Constantes.ESTADO);
             switch (estado) {
-                case "1":
-                    // Mostrar mensaje
-                   // Toast.makeText(MainActivity.this, "Welcome to From Scratch.", Toast.LENGTH_LONG).show();
-                    // Enviar código de éxito
-                    //MainActivity.this.setResult(Activity.RESULT_OK);
-                    // Terminar actividad
-                    //MainActivity.this.finish();
+                case Constantes.SUCCESS:
 
-                    titulo_story.setText("");
-                    desc_synopsis.setText("");
+                    JSONArray retorno = response.getJSONArray("story");
+                    JSONObject jb1 = retorno.getJSONObject(0);
+                    name = jb1.getString("name");
+                    synopsis = jb1.getString("synopsis");
+                    //genre = jb1.getString("description");
+
+                    titulo_upd.setText(name);
+                    synopsis_upd.setText(synopsis);
 
                     break;
-
-                case "2":
-                    // Mostrar mensaje
-                    Toast.makeText(getActivity(), "An error has occur. Please try again.", Toast.LENGTH_LONG).show();
-                    // Enviar código de falla
-                    //MainActivity.this.setResult(Activity.RESULT_CANCELED);
-                    // Terminar actividad
-                    //MainActivity.this.finish();
+                case Constantes.FAILED:
+                    String mensaje = response.getString(Constantes.MENSAJE);
+                    Toast.makeText(getActivity().getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
                     break;
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
-
 
     /* OBTENER GENRES EN EL SPINNER */
 
@@ -263,8 +316,8 @@ public class New_Story extends Fragment implements AdapterView.OnItemSelectedLis
                     ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, idList);
                     dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    sp_genre.setAdapter(dataAdapter);
-                    sp_genre.setOnItemSelectedListener(this);
+                    sp_genre_upd.setAdapter(dataAdapter);
+                    sp_genre_upd.setOnItemSelectedListener(this);
                     break;
                 case Constantes.FAILED:
                     String mensaje = response.getString(Constantes.MENSAJE);
@@ -276,6 +329,7 @@ public class New_Story extends Fragment implements AdapterView.OnItemSelectedLis
             e.printStackTrace();
         }
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -306,7 +360,7 @@ public class New_Story extends Fragment implements AdapterView.OnItemSelectedLis
 
         Spinner spinner = (Spinner) parent;
 
-        if(spinner.getId() == R.id.spinner_genres)
+        if(spinner.getId() == R.id.spinner_genres_upd)
         {
             String genre = (String) ((TextView) view).getText();
             String genre_id = genres.get(genre);
@@ -319,7 +373,6 @@ public class New_Story extends Fragment implements AdapterView.OnItemSelectedLis
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
 
     /**
      * This interface must be implemented by activities that contain this

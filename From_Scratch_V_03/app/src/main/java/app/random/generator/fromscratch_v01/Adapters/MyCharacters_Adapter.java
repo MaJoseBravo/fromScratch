@@ -17,7 +17,7 @@ import app.random.generator.fromscratch_v01.R;
  */
 
 public class MyCharacters_Adapter extends RecyclerView.Adapter<MyCharacters_Adapter.MyCharactersViewHolder>
-        implements ItemClickListener{
+     {
 
 
     private List<MyCharacters> items;
@@ -39,7 +39,7 @@ public class MyCharacters_Adapter extends RecyclerView.Adapter<MyCharacters_Adap
     public MyCharactersViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item_list_characters, viewGroup, false);
-        return new MyCharactersViewHolder(v, this);
+        return new MyCharactersViewHolder(v);
     }
 
     @Override
@@ -49,31 +49,19 @@ public class MyCharacters_Adapter extends RecyclerView.Adapter<MyCharacters_Adap
         viewHolder.gender.setText(items.get(i).getDescription_gender());
     }
 
-    @Override
-    public void onItemClick(View view, int position) {
 
-    }
-
-    public static class MyCharactersViewHolder extends RecyclerView.ViewHolder
-            implements View.OnClickListener {
+    public static class MyCharactersViewHolder extends RecyclerView.ViewHolder {
         // Campos respectivos de un item
         public TextView name;
         public TextView race;
         public TextView gender;
-        public ItemClickListener listener;
 
-        public MyCharactersViewHolder(View v, ItemClickListener listener) {
+        public MyCharactersViewHolder(View v) {
             super(v);
             name = (TextView) v.findViewById(R.id.nameCharacter);
             race = (TextView) v.findViewById(R.id.categoria_01);
             gender = (TextView) v.findViewById(R.id.categoria_02);
-            this.listener = listener;
-            v.setOnClickListener(this);
-        }
 
-        @Override
-        public void onClick(View v) {
-            listener.onItemClick(v, getAdapterPosition());
         }
     }
 }

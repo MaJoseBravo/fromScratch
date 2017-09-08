@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         Settings.OnFragmentInteractionListener, Help.OnFragmentInteractionListener, About.OnFragmentInteractionListener,
         Generator_Character.OnFragmentInteractionListener, Generator_Location.OnFragmentInteractionListener,
         Character_List.OnFragmentInteractionListener, Location_List.OnFragmentInteractionListener, Genre_List.OnFragmentInteractionListener,
-        Story_Overview.OnFragmentInteractionListener, GoogleApiClient.OnConnectionFailedListener {
+        Story_Overview.OnFragmentInteractionListener, Edit_Story.OnFragmentInteractionListener, GoogleApiClient.OnConnectionFailedListener {
 
     /*HASH MAP PARA AUTENTICAR*/
 
@@ -81,6 +81,8 @@ public class MainActivity extends AppCompatActivity
     public View parentLayout;
 
     private String idToken;
+
+    private HashMap <String, String> userHashMap;
 
 
     /* SHARED PREFERENCES */
@@ -175,7 +177,16 @@ public class MainActivity extends AppCompatActivity
 
             idToken = account.getId();
 
-            guardarUsuarios(result);
+            userHashMap = new LinkedHashMap<>();
+            userHashMap.put("name", result.getSignInAccount().getDisplayName());
+            userHashMap.put("email", result.getSignInAccount().getEmail());
+            userHashMap.put("id_google", result.getSignInAccount().getId());
+
+            sharedPreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
+            sharedPreferences.edit().remove("id").commit();
+
+            obtenerUserId(userHashMap);
+
 
         }else{
             goLogInScreen();
@@ -197,6 +208,11 @@ public class MainActivity extends AppCompatActivity
                 } else {
                     Toast.makeText(getApplicationContext(), "Couldn't sign out", Toast.LENGTH_SHORT).show();
                 }
+
+                sharedPreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
+                sharedPreferences.edit().remove("id").commit();
+                //sharedPreferences.edit().clear().commit();
+
             }
         });
     }
@@ -204,13 +220,13 @@ public class MainActivity extends AppCompatActivity
 
     /*METODOS DE AUTENTICACION */
 
-    public void guardarUsuarios (GoogleSignInResult result){
+    public void guardarUsuarios (HashMap<String, String> userData){
 
         HashMap<String, String> map = new HashMap<>();// Mapeo previo
 
-        map.put("name", result.getSignInAccount().getDisplayName());
-        map.put("email", result.getSignInAccount().getEmail());
-        map.put("id_google", result.getSignInAccount().getId());
+        map.put("name", userData.get("name"));
+        map.put("email", userData.get("email"));
+        map.put("id_google", userData.get("id_google"));
 
         // Crear nuevo objeto Json basado en el mapa
         JSONObject jobject = new JSONObject(map);
@@ -236,10 +252,6 @@ public class MainActivity extends AppCompatActivity
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Log.d(TAG, "Error Volley: " + error.getMessage());
-                                HashMap <String, String> userId = new LinkedHashMap<>();
-                                userId.put("id_google", idToken);
-                                obtenerUserId(userId);
-
                             }
                         }
 
@@ -264,12 +276,12 @@ public class MainActivity extends AppCompatActivity
 
     public void obtenerUserId (HashMap<String, String> userId){
 
-        //HashMap<String, String> map = new HashMap<>();// Mapeo previo
+        HashMap<String, String> map = new HashMap<>();// Mapeo previo
 
-        //map.put("id_google", result.getSignInAccount().getId());
+        map.put("id_google", userId.get("id_google"));
 
         // Crear nuevo objeto Json basado en el mapa
-        JSONObject jobject = new JSONObject(userId);
+        JSONObject jobject = new JSONObject(map);
 
         // Depurando objeto Json...
         Log.d(TAG, jobject.toString());
@@ -323,34 +335,31 @@ public class MainActivity extends AppCompatActivity
                 case Constantes.SUCCESS:
 
                     JSONArray retorno = response.getJSONArray("user");
-                    Integer ln = retorno.length();
-                    Log.d("int", ln.toString());
-
-                    for (int i = 0; i < retorno.length(); i++) {
-                        JSONObject jb1 = retorno.getJSONObject(i);
-
-                        String id = jb1.getString("id");
-                        String name = jb1.getString("name");
-                        String email = jb1.getString("email");
+                    JSONObject currentUser = retorno.getJSONObject(0);
+                    String id = currentUser.getString("id");
+                    String name = currentUser.getString("name");
+                    String email = currentUser.getString("email");
 
                         data = name + "\n" + email;
 
                         /*Shared preferences*/
-
                         sharedPreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("id", id);
                         editor.commit();
-                    }
+
+                    //Fragmnet para cargar historias
+                    getSupportFragmentManager().beginTransaction().replace(R.id.Contenedor, new Notebook()).commit();
 
                     //Toast.makeText(MainActivity.this, data, Toast.LENGTH_LONG).show();
-                    Snackbar.make(parentLayout, data, Snackbar.LENGTH_LONG)
-                            .show();
+                    //Snackbar.make(parentLayout, data, Snackbar.LENGTH_LONG).show();
 
                     break;
                 case Constantes.FAILED:
-                    String mensaje = response.getString(Constantes.MENSAJE);
-                    Toast.makeText(MainActivity.this, mensaje, Toast.LENGTH_SHORT).show();
+                    //GUARDAR USUARIOS SI NO ESTA REGISTRADO
+                    guardarUsuarios(userHashMap);
+                    //String mensaje = response.getString(Constantes.MENSAJE);
+                    //Toast.makeText(MainActivity.this, mensaje, Toast.LENGTH_SHORT).show();
                     break;
             }
         } catch (JSONException e) {
@@ -371,7 +380,7 @@ public class MainActivity extends AppCompatActivity
                     // Mostrar mensaje
                     Toast.makeText(
                             MainActivity.this,
-                            "Welcome to From Scratch.",
+                            "Welcome to From Scratch!",
                             Toast.LENGTH_LONG).show();
                     // Enviar código de éxito
                     //MainActivity.this.setResult(Activity.RESULT_OK);

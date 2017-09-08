@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FFFFFF"
     tools:context="app.random.generator.fromscratch_v01.Character_List">
 
@@ -22,15 +23,30 @@
         android:textSize="24dp"
         android:textStyle="normal"
         android:textColor="#D43B3F"
-        android:text="Characters" />
+        android:text="My characters" />
 
-    <!--<ListView
-        android:id="@+id/list_characters"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
+    <ImageView
+        android:id="@+id/icono_myCharacters"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_below="@+id/titulo_char_list"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp" />-->
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/user01" />
+
+    <TextView
+        android:id="@+id/noCharactersTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You don't have characters yet."
+        android:layout_marginTop="50dp"
+        android:visibility="invisible"
+        android:textSize="16dp"
+        android:textAlignment="center"
+        android:textStyle="normal"
+        android:textColor="#333333"
+        android:layout_below="@+id/icono_myCharacters"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/reciclador_personajes"
@@ -38,8 +54,8 @@
         android:layout_height="match_parent"
         android:padding="3dp"
         android:scrollbars="vertical"
-        android:layout_marginTop="19dp"
-        android:layout_below="@+id/titulo_char_list"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/icono_myCharacters"
         android:layout_alignParentStart="true" />
 
 

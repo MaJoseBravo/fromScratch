@@ -362,7 +362,8 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
                     break;
                 case Constantes.FAILED:
                     String mensaje = response.getString(Constantes.MENSAJE);
-                    Toast.makeText(getActivity().getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "An error has ocurr", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity().getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
                     /*guardar.setEnabled(false);*/
                     break;
             }
@@ -440,6 +441,7 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
             }
         } catch (JSONException e) {
             e.printStackTrace();
+            Toast.makeText(getActivity().getApplicationContext(), "An error has occur", Toast.LENGTH_SHORT).show();
         }
     }
 
