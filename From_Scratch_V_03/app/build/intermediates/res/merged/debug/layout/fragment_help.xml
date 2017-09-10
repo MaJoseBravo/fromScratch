@@ -1,0 +1,145 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="app.random.generator.fromscratch_v01.Help"
+    android:scrollbars="vertical"
+    android:background="#ffffff">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!--  <TextView
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:text="HELP" />-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp">
+
+
+        <TextView
+            android:id="@+id/titulo_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="FAQ"
+            android:textSize="24dp"
+            android:textStyle="normal"
+            android:textColor="#D43B3F"
+            android:layout_gravity="center_horizontal"/>
+
+        <ImageView
+            android:id="@+id/icono_help"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="22dp"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/help01" />
+
+        <TextView
+            android:id="@+id/pregunta_01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginLeft="15dp"
+            android:text="What happens with characters and locations I generate?"
+            android:textColor="#333333"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/respuesta_01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:text="Characters and locations are shown in a list. To view your characters and locations, go the Main Menu and select My Characters or My Locations."
+            android:textColor="#333333"/>
+
+        <TextView
+            android:id="@+id/pregunta_02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginLeft="15dp"
+            android:text="Where can I find the stories I create?"
+            android:textColor="#333333"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/respuesta_02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="To view your stories, go the Main Menu and select Notebook."
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/pregunta_03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Do I need to create an account to use the app?"
+            android:textColor="#333333"
+            android:layout_marginTop="22dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/respuesta_03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#333333"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:text="You don't need to create a new one, because you can connect with your Google account." />
+
+        <TextView
+            android:id="@+id/pregunta_04"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginLeft="15dp"
+            android:text="Can I edit or delete the stories I created?"
+            android:textColor="#333333"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/respuesta_04"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#333333"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:text="Yes, by selecting the story in the Notebook section. An overview of the story is shown, then you can select Edit or Delete." />
+
+        <TextView
+            android:id="@+id/pregunta_05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginLeft="15dp"
+            android:text="How do I write comments or suggestions about the application?"
+            android:textColor="#333333"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/respuesta_05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#333333"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="20dp"
+            android:text="You can send comments or suggestions through our email or a private message on our Facebook page. For more info, go the Main Menu and select About." />
+
+    </LinearLayout>
+
+
+
+</ScrollView>

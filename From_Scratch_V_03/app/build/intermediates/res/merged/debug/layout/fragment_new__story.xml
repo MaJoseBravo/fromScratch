@@ -1,0 +1,107 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="20dp"
+    tools:context="app.random.generator.fromscratch_v01.New_Story"
+    android:background="#FFFFFF">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!-- <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="NEW STORY" />-->
+
+
+    <EditText
+        android:id="@+id/titulo_story"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        android:textColor="#333333"
+        android:hint="Story Name"/>
+
+    <TextView
+        android:id="@+id/titulo_synopsis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="23dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:text="Synopsis"
+        android:layout_below="@+id/titulo_story"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/titulo_synopsis"
+        android:id="@+id/linearLayout">
+
+        <EditText
+            android:id="@+id/desc_synopsis"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#C24040"
+            android:textColor="#ffffff"
+            android:inputType="textMultiLine"
+            android:gravity="top|left"
+            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/genre_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:text="Genre"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignStart="@+id/titulo_synopsis" />
+
+    <Spinner
+        android:id="@+id/spinner_genres"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/genre_title"
+        android:layout_toEndOf="@+id/titulo_synopsis" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="#00c2c3"
+            android:textColor="#ffffff"
+            android:text="Save"
+            android:layout_weight="1"
+            android:textSize="16dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

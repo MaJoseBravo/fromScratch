@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/release/menu/activity_main_drawer.xml",
+        "source": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/src/main/res/menu/activity_main_drawer.xml"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/release/menu/main.xml",
+        "source": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/src/main/res/menu/main.xml"
+    }
+]

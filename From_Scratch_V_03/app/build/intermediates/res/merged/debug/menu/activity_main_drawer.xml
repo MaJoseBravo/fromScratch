@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_new_story"
+            android:icon="@drawable/story02"
+            android:title="New Story"
+            android:layout_width="32dp"
+            android:layout_height="32dp"/>
+        <item
+            android:id="@+id/nav_new_character"
+            android:icon="@drawable/character02"
+            android:title="New Character"
+            android:layout_width="32dp"
+            android:layout_height="32dp"/>
+        <item
+            android:id="@+id/nav_new_location"
+            android:icon="@drawable/icon"
+            android:title="New Location"
+            android:layout_width="32dp"
+            android:layout_height="32dp"/>
+        <item
+            android:id="@+id/nav_notebook"
+            android:icon="@drawable/notebook02"
+            android:title="Notebook"
+            android:layout_width="32dp"
+            android:layout_height="32dp"/>
+        <item
+            android:id="@+id/nav_my_characters"
+            android:icon="@drawable/mycharacters"
+            android:title="My Characters"
+            android:layout_width="32dp"
+            android:layout_height="32dp"/>
+        <item
+            android:id="@+id/nav_my_locations"
+            android:icon="@drawable/location02"
+            android:title="My Locations"
+            android:layout_width="32dp"
+            android:layout_height="32dp"/>
+    </group>
+
+    <item android:title="Other">
+        <menu>
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/help02"
+                android:title="FAQ"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/about02"
+                android:title="About"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/log_out"
+                android:icon="@drawable/logout02"
+                android:title="Log out"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:checkable="true"/>
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,7 @@
+#Sun Sep 10 14:19:49 ECT 2017
+base.0=/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_6abb2b3ea5e988c1741b81adaa71caef5a3dd27f
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_81b4e07c06ac18279b574db048ed520519664ac2/classes.dex
+base.1=/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_81b4e07c06ac18279b574db048ed520519664ac2
+file.0=/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_6abb2b3ea5e988c1741b81adaa71caef5a3dd27f/classes.dex

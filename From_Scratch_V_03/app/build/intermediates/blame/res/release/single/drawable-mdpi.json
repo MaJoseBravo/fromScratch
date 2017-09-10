@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/release/drawable-mdpi/ic_menu_camera.png",
+        "source": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/generated/res/pngs/release/drawable-mdpi/ic_menu_camera.png"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/release/drawable-mdpi/ic_menu_manage.png",
+        "source": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/generated/res/pngs/release/drawable-mdpi/ic_menu_manage.png"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/release/drawable-mdpi/ic_menu_gallery.png",
+        "source": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/generated/res/pngs/release/drawable-mdpi/ic_menu_gallery.png"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/release/drawable-mdpi/ic_menu_slideshow.png",
+        "source": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/generated/res/pngs/release/drawable-mdpi/ic_menu_slideshow.png"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/release/drawable-mdpi/ic_menu_share.png",
+        "source": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/generated/res/pngs/release/drawable-mdpi/ic_menu_share.png"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/release/drawable-mdpi/ic_menu_send.png",
+        "source": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/generated/res/pngs/release/drawable-mdpi/ic_menu_send.png"
+    }
+]

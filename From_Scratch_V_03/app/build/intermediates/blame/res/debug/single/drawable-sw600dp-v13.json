@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/debug/drawable-sw600dp-v13/ic_expand_holo_light.xml",
+        "source": "/home/anali/.android/build-cache/1a176bbdf02e0943fd749420035546318077ce63/output/res/drawable-sw600dp/ic_expand_holo_light.xml"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/debug/drawable-sw600dp-v13/ic_collapse_holo_light.xml",
+        "source": "/home/anali/.android/build-cache/1a176bbdf02e0943fd749420035546318077ce63/output/res/drawable-sw600dp/ic_collapse_holo_light.xml"
+    }
+]

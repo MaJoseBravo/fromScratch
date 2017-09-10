@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="app.random.generator.fromscratch_v01.Location_List">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!-- <TextView
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:text="@string/hello_blank_fragment" />-->
+
+     <TextView
+         android:id="@+id/titulo_locat_list"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentTop="true"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="22dp"
+         android:textSize="24dp"
+         android:textStyle="normal"
+         android:textColor="#D43B3F"
+         android:text="Locations" />
+
+    <Button
+        android:id="@+id/next_03"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="#00c2c3"
+        android:textColor="#ffffff"
+        android:layout_marginBottom="25dp"
+        android:text="Next" />
+
+    <ListView
+        android:id="@+id/list_locations"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_below="@+id/titulo_locat_list"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp" />
+
+
+</RelativeLayout>

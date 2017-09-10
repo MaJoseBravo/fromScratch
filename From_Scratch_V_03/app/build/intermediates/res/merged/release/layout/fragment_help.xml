@@ -1,0 +1,127 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="app.random.generator.fromscratch_v01.Help"
+    android:background="#ffffff">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!--  <TextView
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:text="HELP" />-->
+
+
+    <TextView
+        android:id="@+id/titulo_help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:text="FAQ"
+        android:textSize="24dp"
+        android:textStyle="normal"
+        android:textColor="#D43B3F"/>
+
+    <ImageView
+        android:id="@+id/icono_help"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/titulo_help"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        app:srcCompat="@drawable/help01" />
+
+    <TextView
+        android:id="@+id/pregunta_01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="What happens with characters and locations I generate?"
+        android:layout_below="@+id/icono_help"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:textColor="#333333"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/respuesta_01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:text="Characters and locations are shown in a list. They can be added to your stories after you saved them. To view your characters and locations, go to the Notebook section."
+        android:layout_below="@+id/pregunta_01"
+        android:layout_alignStart="@+id/pregunta_01"
+        android:textColor="#333333"/>
+
+    <TextView
+        android:id="@+id/pregunta_02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/respuesta_01"
+        android:layout_below="@+id/respuesta_01"
+        android:layout_marginTop="22dp"
+        android:text="Where can I find the stories I create?"
+        android:textColor="#333333"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/respuesta_02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To view your stories, go to the Notebook section."
+        android:textColor="#333333"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_below="@+id/pregunta_02"
+        android:layout_alignStart="@+id/pregunta_02" />
+
+    <TextView
+        android:id="@+id/pregunta_03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/respuesta_02"
+        android:layout_below="@+id/respuesta_02"
+        android:layout_marginTop="22dp"
+        android:text="Do I need to create an account to use the app?"
+        android:textColor="#333333"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/respuesta_03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:text="You don't need to create a new one, because you can connect with your Google account."
+        android:layout_below="@+id/pregunta_03"
+        android:layout_alignStart="@+id/pregunta_03" />
+
+    <TextView
+        android:id="@+id/pregunta_04"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/respuesta_03"
+        android:layout_below="@+id/respuesta_03"
+        android:layout_marginTop="22dp"
+        android:text="How do I write comments or suggestions about the application?"
+        android:textColor="#333333"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/respuesta_04"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:text="You can send comments or suggestions through our email or a private message on our Facebook page. For more info, go to the About section."
+        android:layout_below="@+id/pregunta_04"
+        android:layout_alignStart="@+id/pregunta_04" />
+
+
+</RelativeLayout>

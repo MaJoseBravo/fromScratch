@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/anali/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/pre-dexed/release/support-annotations-25.3.1_c665d0d3f94c35ad59b10d050e161c410537fa6d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anali/.android/build-cache/a20e287b48a6b8d296bf7707fad66fe2848ce7fa/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/pre-dexed/release/classes_f3c6269376609ebfe00a04a3e7093be3ebbfba65.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anali/.android/build-cache/337d1a12b0d91002e62914fc0833742ca0f8cdf2/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/pre-dexed/release/classes_b021fda3978247fc38783d6c298b372e6239032c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anali/.android/build-cache/1fffaa384b3d76026ba7e241f21911840c0999c2/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/pre-dexed/release/classes_4a8a9b0724fa4693c56b98ff20d018cf9c705d71.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anali/.android/build-cache/c560650a82e31468aa5e51d6370c417a3aac260b/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/pre-dexed/release/classes_21922bee7d6ece5daff3ea7b1cf34ca69f4c48e8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anali/.android/build-cache/fd85fa2a19b2c0f80d03b8e4a76d63efdcbde098/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/pre-dexed/release/classes_4520784320fdd4099e1fc87b0f78d967618be6ca.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anali/Android/Sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/pre-dexed/release/constraint-layout-solver-1.0.2_cba130fd36e6dd4f5b086e10c02e7693f2dad55e.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="0f975c064e72fa74d9d01e35569c2870df8d5db7">
+        <dex dex="/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_b3905c64b23c2251457aa0a938acf977d4891780/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anali/.android/build-cache/58e5a4bfc929e7a09d366f3712e800bf25fcfc6c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/pre-dexed/release/classes_5990e37bc5de16a9b2cf2f10c538d555130769e6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anali/.android/build-cache/ff6bc2ab1be30d902cbd37e0731abcd32987b930/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/pre-dexed/release/classes_c1b1da74be63152f53a6b989f94efc3b712103ff.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_6a7bdaff3a09cb81ba4f26eb9447c6c6ce8d4638/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anali/.android/build-cache/394691d418939cd78dc3436c7e4817d17d9db12b/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/pre-dexed/release/classes_edf068bc5bade98025b1406468bafde6d485d576.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anali/.android/build-cache/5b930c31b9b44121afb3e26aac3dc320f417a425/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/pre-dexed/release/classes_06ede5a82f0c93fbc3509b374832e9b21402d78d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anali/.android/build-cache/85c9ea7322f9963f2586711ed025cc8ba33824cd/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/pre-dexed/release/classes_c1cdc1831a77608897c8946f29aa99c00fcf3192.jar" />
+    </item>
+
+</items>

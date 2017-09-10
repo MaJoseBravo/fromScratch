@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="20dp"
+    tools:context="app.random.generator.fromscratch_v01.New_Story"
+    android:background="#FFFFFF">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!-- <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="NEW STORY" />-->
+
+
+    <EditText
+        android:id="@+id/titulo_story_upd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        android:textColor="#333333"
+        android:hint="Story Name"/>
+
+    <TextView
+        android:id="@+id/titulo_synopsis_upd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="23dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:text="Synopsis"
+        android:layout_below="@+id/titulo_story_upd"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/desc_synopsis_upd"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:background="#C24040"
+        android:textColor="#ffffff"
+        android:inputType="textMultiLine"
+        android:layout_below="@+id/titulo_synopsis_upd"
+        android:layout_alignStart="@+id/titulo_synopsis_upd" />
+
+    <TextView
+        android:id="@+id/genre_upd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_below="@+id/desc_synopsis_upd"
+        android:layout_alignStart="@+id/desc_synopsis_upd"
+        android:text="Genre" />
+
+    <Spinner
+        android:id="@+id/spinner_genres_upd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/genre_upd"
+        android:layout_toEndOf="@+id/titulo_synopsis_upd" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="#00c2c3"
+            android:textColor="#ffffff"
+            android:text="Update"
+            android:layout_weight="1"
+            android:textSize="16dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

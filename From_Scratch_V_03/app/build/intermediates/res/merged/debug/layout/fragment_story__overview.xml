@@ -1,0 +1,99 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="app.random.generator.fromscratch_v01.Story_Overview">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!--  <TextView
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:text="@string/hello_blank_fragment" />-->
+
+    <TextView
+        android:id="@+id/titulo_story_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:textColor="#C24040"
+        android:textStyle="bold"
+        android:layout_marginTop="22dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/synopsis_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:layout_marginTop="22dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/titulo_story_overview"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/genres_list_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/synopsis_overview"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/genre_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/genres_list_overview"
+        android:layout_below="@+id/genres_list_overview"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="5dp"
+        android:textColor="#333333" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/edit_story"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="#00c2c3"
+            android:textColor="#ffffff"
+            android:text="Edit"
+            android:textSize="16dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"/>
+
+        <Button
+            android:id="@+id/delete_story"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="#00c2c3"
+            android:textColor="#ffffff"
+            android:text="Delete"
+            android:layout_weight="1"
+            android:textSize="16dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_menu_send.png",
+        "source": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/generated/res/pngs/debug/drawable-hdpi/ic_menu_send.png"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_expand_large_holo_light.png",
+        "source": "/home/anali/.android/build-cache/1a176bbdf02e0943fd749420035546318077ce63/output/res/drawable-hdpi/ic_expand_large_holo_light.png"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_menu_slideshow.png",
+        "source": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/generated/res/pngs/debug/drawable-hdpi/ic_menu_slideshow.png"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_menu_camera.png",
+        "source": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/generated/res/pngs/debug/drawable-hdpi/ic_menu_camera.png"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_menu_manage.png",
+        "source": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/generated/res/pngs/debug/drawable-hdpi/ic_menu_manage.png"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_menu_share.png",
+        "source": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/generated/res/pngs/debug/drawable-hdpi/ic_menu_share.png"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_expand_small_holo_light.png",
+        "source": "/home/anali/.android/build-cache/1a176bbdf02e0943fd749420035546318077ce63/output/res/drawable-hdpi/ic_expand_small_holo_light.png"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_collapse_large_holo_light.png",
+        "source": "/home/anali/.android/build-cache/1a176bbdf02e0943fd749420035546318077ce63/output/res/drawable-hdpi/ic_collapse_large_holo_light.png"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_menu_gallery.png",
+        "source": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/generated/res/pngs/debug/drawable-hdpi/ic_menu_gallery.png"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/From_Scratch_V_03/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_collapse_small_holo_light.png",
+        "source": "/home/anali/.android/build-cache/1a176bbdf02e0943fd749420035546318077ce63/output/res/drawable-hdpi/ic_collapse_small_holo_light.png"
+    }
+]

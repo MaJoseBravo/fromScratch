@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/res/merged/debug/color-v23/abc_btn_colored_text_material.xml",
+        "source": "/home/anali/.android/build-cache/fd85fa2a19b2c0f80d03b8e4a76d63efdcbde098/output/res/color-v23/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/res/merged/debug/color-v23/abc_tint_switch_track.xml",
+        "source": "/home/anali/.android/build-cache/fd85fa2a19b2c0f80d03b8e4a76d63efdcbde098/output/res/color-v23/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/res/merged/debug/color-v23/abc_tint_default.xml",
+        "source": "/home/anali/.android/build-cache/fd85fa2a19b2c0f80d03b8e4a76d63efdcbde098/output/res/color-v23/abc_tint_default.xml"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/res/merged/debug/color-v23/abc_tint_switch_thumb.xml",
+        "source": "/home/anali/.android/build-cache/fd85fa2a19b2c0f80d03b8e4a76d63efdcbde098/output/res/color-v23/abc_tint_switch_thumb.xml"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/res/merged/debug/color-v23/abc_btn_colored_borderless_text_material.xml",
+        "source": "/home/anali/.android/build-cache/fd85fa2a19b2c0f80d03b8e4a76d63efdcbde098/output/res/color-v23/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/res/merged/debug/color-v23/abc_tint_edittext.xml",
+        "source": "/home/anali/.android/build-cache/fd85fa2a19b2c0f80d03b8e4a76d63efdcbde098/output/res/color-v23/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/res/merged/debug/color-v23/abc_tint_spinner.xml",
+        "source": "/home/anali/.android/build-cache/fd85fa2a19b2c0f80d03b8e4a76d63efdcbde098/output/res/color-v23/abc_tint_spinner.xml"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/res/merged/debug/color-v23/abc_tint_btn_checkable.xml",
+        "source": "/home/anali/.android/build-cache/fd85fa2a19b2c0f80d03b8e4a76d63efdcbde098/output/res/color-v23/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/res/merged/debug/color-v23/abc_color_highlight_material.xml",
+        "source": "/home/anali/.android/build-cache/fd85fa2a19b2c0f80d03b8e4a76d63efdcbde098/output/res/color-v23/abc_color_highlight_material.xml"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/res/merged/debug/color-v23/abc_tint_seek_thumb.xml",
+        "source": "/home/anali/.android/build-cache/fd85fa2a19b2c0f80d03b8e4a76d63efdcbde098/output/res/color-v23/abc_tint_seek_thumb.xml"
+    }
+]

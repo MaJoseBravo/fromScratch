@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/res/merged/release/mipmap-mdpi/ic_launcher.png",
+        "source": "/home/anali/AndroidStudioProjects/FromScratch_v01/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/anali/AndroidStudioProjects/FromScratch_v01/app/build/intermediates/res/merged/release/mipmap-mdpi/ic_launcher_round.png",
+        "source": "/home/anali/AndroidStudioProjects/FromScratch_v01/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
+    }
+]
