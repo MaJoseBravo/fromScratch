@@ -16,7 +16,10 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp">
 
 
         <TextView
@@ -54,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="15dp"
-            android:text="Characters and locations are shown in a list. They can be added to your stories after you saved them. To view your characters and locations, go to the Notebook section."
+            android:text="Characters and locations are shown in a list. To view your characters and locations, go the Main Menu and select My Characters or My Locations."
             android:textColor="#333333"/>
 
         <TextView
@@ -72,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:text="To view your stories, go to the Notebook section."
+            android:text="To view your stories, go the Main Menu and select Notebook."
             android:textColor="#333333" />
 
         <TextView
@@ -100,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:layout_marginLeft="15dp"
-            android:text="How do I write comments or suggestions about the application?"
+            android:text="Can I edit or delete the stories I created?"
             android:textColor="#333333"
             android:textStyle="bold"/>
 
@@ -112,7 +115,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
-            android:text="You can send comments or suggestions through our email or a private message on our Facebook page. For more info, go to the About section." />
+            android:text="Yes, by selecting the story in the Notebook section. An overview of the story is shown, then you can select Edit or Delete." />
 
         <TextView
             android:id="@+id/pregunta_05"
@@ -132,7 +135,8 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
-            android:text="You can send comments or suggestions through our email or a private message on our Facebook page. " />
+            android:layout_marginBottom="20dp"
+            android:text="You can send comments or suggestions through our email or a private message on our Facebook page. For more info, go the Main Menu and select About." />
 
     </LinearLayout>
 

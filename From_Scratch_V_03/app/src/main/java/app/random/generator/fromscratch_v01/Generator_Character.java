@@ -258,7 +258,8 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
                                 new Response.ErrorListener() {
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
-                                        Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                                        final String mensaje = "An error has occur. Please try again.";
+                                        Toast.makeText(getActivity().getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
                                     }
                                 }
                         ) {
@@ -584,7 +585,7 @@ public class Generator_Character extends Fragment implements AdapterView.OnItemS
             publishProgress(myProgress++);
             for(int i=0;i<n;i++){
                 try {
-                    Thread.sleep(700);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
